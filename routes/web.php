@@ -12,6 +12,7 @@ use App\Http\Controllers\ParentController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\AssignClassTeacherController;
 use App\Http\Controllers\ClassTimetableController;
+use App\Http\Controllers\ExaminationController;
 use Illuminate\Support\Facades\Route;
 
 // Route::get('/', function () {
@@ -130,6 +131,18 @@ Route::group(['middleware' => 'admin'], function () {
     // Route::post('/admin/assign_class_teacher/add', [AssignClassTeacherController::class, 'insert']);
 
 
+    //Exams
+    Route::get('/admin/examinations/exam/list', [ExaminationController::class, 'exam_list']);
+    Route::get('/admin/examinations/exam/add', [ExaminationController::class, 'exam_add']);
+    Route::post('admin/examinations/exam/add', [ExaminationController::class, 'exam_insert']);
+    Route::get('/admin/examinations/exam/edit/{id}', [ExaminationController::class, 'exam_edit']);
+    Route::post('/admin/examinations/exam/edit/{id}', [ExaminationController::class, 'exam_update']);
+    Route::get('/admin/examinations/exam/delete/{id}', [ExaminationController::class, 'exam_delete']);
+
+    Route::get('/admin/my_account', [UserController::class, 'myAccount']);
+    Route::post('/admin/my_account', [UserController::class, 'UpdateMyAccountAdmin']);
+
+
 
 
 });
@@ -150,7 +163,8 @@ Route::group(['middleware' => 'teacher'], function () {
 
     //My Class  Subject
     Route::get('/teacher/my_class_subject', [AssignClassTeacherController::class, 'MyClassSubject']);
-
+    // Route::get('mwalimu/darasasomo/mwelekeo/{class_id}/{subject_id}', [ClassTimetableController::class, 'MyTeachingTimetable']);
+    Route::get('/teacher/my_class_subject/timetable/{class_id}/{subject_id}', [ClassTimetableController::class, 'TeacherTimetable']);
 });
 
 Route::group(['middleware' => 'student'], function () {
@@ -161,10 +175,11 @@ Route::group(['middleware' => 'student'], function () {
     Route::post('/student/change_password', [UserController::class, 'update_change_password']);
 
     Route::get('/student/my_subject', [SubjectController::class, 'MySubject']);
+    Route::get('/student/my_timetable', [ClassTimetableController::class, 'MyTimetable']);
 
     //Edit Profile
     Route::get('/student/my_account', [UserController::class, 'myAccount']);
-    Route::post('/student/my_account', [UserController::class, 'UpdateMyAccountStudent']);
+    Route::post('/student/my_account', [ClassController::class, 'UpdateMyAccountStudent']);
 
 });
 
@@ -183,6 +198,8 @@ Route::group(['middleware' => 'parent'], function () {
 
 
     Route::get('/parent/my_student/somo/{student_id}', [SubjectController::class, 'ParentStudentSubject']);
+    Route::get('/parent/my_student/timetable/{class_id}/{subject_id}/{student_id}', [ClassTimetableController::class, 'MyTimetableParent']);
+
 
     Route::get('parent/studentmy/soma/{student_id}', [SubjectController::class, 'ParentStudentSubject']);
 

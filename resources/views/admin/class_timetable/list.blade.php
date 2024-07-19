@@ -22,16 +22,15 @@
             <!-- Content Header (Page header) -->
             <section class="content-header">
                 <div class="container-fluid">
+                @include('_message')
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>Class Timetable List</h1>
+                        
+                            <h1>Class Timetable</h1>
                         </div>
-                        <div class="col-sm-6" style=" text-align:right;">
-                            <a href="{{url('admin/class_timetable/add')}}" class="btn btn-primary">Add new Class
-                                Timetable</a>
-                        </div>
+                       
                     </div>
-                    @include('_message')
+                  
                 </div>
                 <!-- /.container-fluid -->
             </section>
@@ -113,18 +112,18 @@
                                        @foreach ($week as $value )
                                        <tr>
                                         <th>
-                                        <input type="hidden" name="timetable[{{$i}}][week_id]" value="{{Request::get('week_id')}}">
+                                        <input type="hidden" name="timetable[{{$i}}][week_id]" value="{{ $value['week_id']}}" value="{{Request::get('week_id')}}">
                                         {{ $value['week_name']}}</th>
                                         <td>
-                                            <input type="time" name="timetable[{{$i}}][start_time]" class="form-control">
+                                            <input type="time" name="timetable[{{$i}}][start_time]" value="{{ $value['start_time']}}" class="form-control">
                                         </td>
 
                                         <td>
-                                            <input type="time" name="timetable[{{$i}}][end_time]" class="form-control">
+                                            <input type="time" name="timetable[{{$i}}][end_time]" value="{{ $value['end_time']}}" class="form-control">
                                         </td>
 
                                         <td>
-                                            <input type="text" style="width:200px;" name="timetable[{{$i}}][room_number]" class="form-control">
+                                            <input type="text" style="width:200px;" name="timetable[{{$i}}][room_number]" value="{{ $value['room_number']}}" class="form-control">
                                         </td>
 
                                        </tr>

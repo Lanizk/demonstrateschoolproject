@@ -10,9 +10,9 @@
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="/../../plugins/fontawesome-free/css/all.min.css">
     <!-- Theme style -->
-    <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
+    <link rel="stylesheet" href="/../../dist/css/adminlte.min.css">
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -43,15 +43,26 @@
 
                                 <th>Subject Name</th>
                                 <th>Subject Type</th>
+                                <th>Action</th>
 
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($getRecord as $value)
                                 <tr>
+                                    <td>{{$value->subject_name}}</td>
+                                    <td>{{$value->subject_type}}</td>
+
+
+
+
+
                                     <td>
-                                        {{$value->subject_name}}
-                                        {{$value->subject_type}}
+                                        <a href="{{url('/parent/my_student/timetable/' . $value->class_id . '/' . $value->subject_id . '/' . $getUser->id)}}"
+                                            class="btn btn-primary">My Class
+                                            TimeTable</a>
+                                    </td>
+
                                     </td>
                                 </tr>
 

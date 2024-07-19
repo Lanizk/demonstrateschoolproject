@@ -60,7 +60,7 @@ class AssignClassTeacherModel extends Model
 
     static public function getMyClassSubject($teacher_id)
     {
-        return AssignClassTeacherModel::select('assign_class_teacher.*', 'class.name as class_name', 'subject.name as subject_name', 'subject.type as subject_type')
+        return AssignClassTeacherModel::select('assign_class_teacher.*', 'class.name as class_name', 'subject.name as subject_name', 'subject.type as subject_type', 'class.id as class_id', 'subject.id as subject_id')
             ->join('class', 'class.id', '=', 'assign_class_teacher.class_id')
             ->join('class_subject', 'class_subject.class_id', '=', 'class.id')
             ->join('subject', 'subject.id', '=', 'class_subject.subject_id')
@@ -83,6 +83,31 @@ class AssignClassTeacherModel extends Model
         return self::where('class_id', '=', $class_id)->delete();
 
     }
+
+    // static public function getMyTimeTable($class_id, $subject_id)
+    // {
+    //     // return self::where('class_id', '=', $class_id)->delete();
+    //     $getWeek = week1model::getWeekUsingName(date('1'));
+
+
+
+    //     return ClassSubjectTimetable::getRecordClassSubject($class_id, $subject_id, $getWeek->week_id);
+
+    // }
+
+    static public function getMyTimeTable($class_id, $subject_id)
+    {
+        $weekName = date('N'); // Correctly get the day of the week
+        $getWeek = week1model::getWeekUsingName($weekName);
+
+        if ($getWeek === null) {
+            error_log("No week found for name: " . $weekName);
+            return null;
+        }
+
+        return ClassSubjectTimetable::getRecordClassSubject($class_id, $subject_id, $getWeek->id);
+    }
+
 
 
 }

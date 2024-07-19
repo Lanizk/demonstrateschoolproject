@@ -49,20 +49,39 @@
                                                 <th>ClassName</th>
                                                 <th>SubjectName</th>
                                                 <th>SubjectType</th>
+                                                <th>MyClassTimeTable</th>
                                                 <th>CreatedDate</th>
+                                                <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             @foreach ($getRecord as $value)
-                                                <tr>
-                                                    <td> {{$value->id}}</td>
-                                                    <td> {{$value->class_name}}</td>
-                                                    <td> {{$value->subject_name}}</td>
-                                                    <td> {{$value->subject_type}}</td>
-                                                    <td> {{date('d-m-Y H:i A', strtotime($value->created_at))}}</td>
-                                                    </td>
+                                                                                        <tr>
+                                                                                            <td> {{$value->id}}</td>
+                                                                                            <td> {{$value->class_name}}</td>
+                                                                                            <td> {{$value->subject_name}}</td>
+                                                                                            <td> {{$value->subject_type}}</td>
+                                                                                            <td>
+                                                                                                @php
+                                                                                                    $ClassSubject = $value->getMyTimetable($value->class_id, $value->subject_id);
+                                                                                                @endphp
+                                                                                                @if(!empty($ClassSubject))
+                                                                                                    {{date('h:i A', strtotime($ClassSubject->start_time))}}
+                                                                                                    to {{date('h:i A', strtotime($ClassSubject->end_time))}}
+                                                                                                    <br>
+                                                                                                    Room number::{{$ClassSubject->room_number}}
+                                                                                                @endif
 
-                                                </tr>
+                                                                                            </td>
+                                                                                            <td> {{date('d-m-Y H:i A', strtotime($value->created_at))}}</td>
+
+                                                                                            <td>
+                                                                                                <a href="{{url('/teacher/my_class_subject/timetable/' . $value->class_id . '/' . $value->subject_id)}}"
+                                                                                                    class="btn btn-primary">My
+                                                                                                    TimeTable</a>
+                                                                                            </td>
+
+                                                                                        </tr>
                                             @endforeach
                                         </tbody>
                                     </table>

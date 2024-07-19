@@ -60,6 +60,7 @@
                                 <th>Subject Name</th>
                                 <th>Subject Type</th>
 
+
                             </tr>
                         </thead>
                         <tbody>
