@@ -13,6 +13,7 @@ use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\AssignClassTeacherController;
 use App\Http\Controllers\ClassTimetableController;
 use App\Http\Controllers\ExaminationController;
+use App\Http\Controllers\CalendarController;
 use Illuminate\Support\Facades\Route;
 
 // Route::get('/', function () {
@@ -139,8 +140,15 @@ Route::group(['middleware' => 'admin'], function () {
     Route::post('/admin/examinations/exam/edit/{id}', [ExaminationController::class, 'exam_update']);
     Route::get('/admin/examinations/exam/delete/{id}', [ExaminationController::class, 'exam_delete']);
 
+    Route::get('/admin/examinations/exam_schedule/list', [ExaminationController::class, 'exam_schedule']);
+    Route::post('/admin/examinations/exam_schedule_insert', [ExaminationController::class, 'exam_schedule_insert']);
+
     Route::get('/admin/my_account', [UserController::class, 'myAccount']);
     Route::post('/admin/my_account', [UserController::class, 'UpdateMyAccountAdmin']);
+
+    Route::get('admin/examinations/marksregister', [ExaminationController::class, 'marks_register']);
+    Route::post('admin/examinations/submit_marks_register', [ExaminationController::class, 'submit_marks_register']);
+    Route::post('admin/examinations/single_submit_marks_register', [ExaminationController::class, 'single_submit_marks_register']);
 
 
 
@@ -165,6 +173,8 @@ Route::group(['middleware' => 'teacher'], function () {
     Route::get('/teacher/my_class_subject', [AssignClassTeacherController::class, 'MyClassSubject']);
     // Route::get('mwalimu/darasasomo/mwelekeo/{class_id}/{subject_id}', [ClassTimetableController::class, 'MyTeachingTimetable']);
     Route::get('/teacher/my_class_subject/timetable/{class_id}/{subject_id}', [ClassTimetableController::class, 'TeacherTimetable']);
+
+    Route::get('/teacher/my_exam_timetable', [ExaminationController::class, 'MyExamTimetableTeacher']);
 });
 
 Route::group(['middleware' => 'student'], function () {
@@ -180,6 +190,10 @@ Route::group(['middleware' => 'student'], function () {
     //Edit Profile
     Route::get('/student/my_account', [UserController::class, 'myAccount']);
     Route::post('/student/my_account', [ClassController::class, 'UpdateMyAccountStudent']);
+
+    Route::get('/student/my_exam_timetable', [ExaminationController::class, 'MyExamTimetable']);
+
+    Route::get('/student/my_calendar', [CalendarController::class, 'MyCalendar']);
 
 });
 
@@ -202,6 +216,8 @@ Route::group(['middleware' => 'parent'], function () {
 
 
     Route::get('parent/studentmy/soma/{student_id}', [SubjectController::class, 'ParentStudentSubject']);
+    Route::get('/parent/studentmy/exam_timetable/{student_id}', [ExaminationController::class, 'ParentMyExamTimetable']);
+
 
 });
 

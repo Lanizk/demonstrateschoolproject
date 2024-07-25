@@ -106,15 +106,15 @@
                                     <td>{{ $value->weight}}</td>
                                     <td>{{ ($value->status == 0) ? 'Active' : 'Inactive'}}</td>
                                     <td>{{ date('d-m-Y', strtotime($value->created_at))}}</td>
-                                    <td>
-                                        <a class="btn btn-primary btn-sm"
+                                    <td style="width:700px;">
+                                        <a class="btn btn-success btn-sm"
                                             href="{{url('parent/studentmy/soma/' . $value->id)}}">Subject</a>
+
+                                        <a class="btn btn-primary btn-sm"
+                                            href="{{url('parent/studentmy/exam_timetable/' . $value->id)}}">ExamTimetable</a>
                                     </td>
 
-                                    <!-- <td>
-                                            <a class="btn btn-primary btn-sm"
-                                                href="{{url('parent/my_student/somo/' . $value->id)}}">Subject</a>
-                                        </td> -->
+
                             @endforeach
 
 
