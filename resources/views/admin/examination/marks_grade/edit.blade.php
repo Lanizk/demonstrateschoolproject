@@ -10,9 +10,9 @@
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="/../../plugins/fontawesome-free/css/all.min.css">
     <!-- Theme style -->
-    <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
+    <link rel="stylesheet" href="/../../dist/css/adminlte.min.css">
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -26,14 +26,9 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>Add New Class</h1>
+                            <h1>Edit Marks Grade</h1>
                         </div>
-                        <div class="col-sm-6">
-                            <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item active">Add New Admin</li>
-                            </ol>
-                        </div>
+
                     </div>
                 </div><!-- /.container-fluid -->
             </section>
@@ -51,27 +46,25 @@
                                     {{ csrf_field()}}
                                     <div class="card-body">
                                         <div class="form-group">
-                                            <label>Class Name</label>
-                                            <input type="text" class="form-control" value="{{old('name')}}" name="name"
-                                                required placeholder="Class Name">
+                                            <label>Grade Name</label>
+                                            <input type="text" class="form-control"
+                                                value="{{old('name', $getRecord->name)}}" name="name" required
+                                                placeholder="">
                                         </div>
 
                                         <div class="form-group">
-                                            <label>Amount (Sh)</label>
-                                            <input type="number" class="form-control" value="{{old('name')}}"
-                                                name="amount" required placeholder="Amount">
+                                            <label>Percent From</label>
+                                            <input type="text" class="form-control"
+                                                value="{{old('percent_from', $getRecord->percent_from)}}"
+                                                name="percent_from" required placeholder="">
                                         </div>
 
                                         <div class="form-group">
-                                            <label>Status</label>
-                                            <select class="form-control" name="status">
-                                                <option value="0">Active</option>
-                                                <option value="1">Inactive</option>
-                                            </select>
-
-
+                                            <label>Percent To</label>
+                                            <input type="text" class="form-control"
+                                                value="{{old('percent_to', $getRecord->percent_to)}}" name="percent_to"
+                                                required placeholder="">
                                         </div>
-
 
 
 
@@ -79,7 +72,7 @@
                                     <!-- /.card-body -->
 
                                     <div class="card-footer">
-                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                        <button type="submit" class="btn btn-primary">Update</button>
                                     </div>
                                 </form>
                             </div>
@@ -110,13 +103,12 @@
     <!-- ./wrapper -->
 
     <!-- jQuery -->
-    <script src="../../plugins/jquery/jquery.min.js"></script>
+    <script src="/../../plugins/jquery/jquery.min.js"></script>
     <!-- Bootstrap 4 -->
-    <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- AdminLTE App -->
-    <script src="../../dist/js/adminlte.min.js"></script>
-    <!-- AdminLTE for demo purposes -->
-    <script src="../../dist/js/demo.js"></script>
+    <script src="/../../dist/js/adminlte.min.js"></script>
+
 </body>
 
 </html>

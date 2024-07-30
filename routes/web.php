@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ClassController;
+use App\Http\Controllers\FeesCollectionController;
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\ClassSubjectController;
 use App\Http\Controllers\UserController;
@@ -152,6 +153,19 @@ Route::group(['middleware' => 'admin'], function () {
 
 
 
+    Route::get('/admin/examinations/marks_grade_list', [ExaminationController::class, 'marks_grade']);
+    Route::get('/admin/examinations/mark_grades/add', [ExaminationController::class, 'marks_grade_add']);
+    Route::post('admin/examinations/mark_grades/add', [ExaminationController::class, 'marks_grade_insert']);
+    Route::get('admin/examinations/marks_grade_edit/{id}', [ExaminationController::class, 'marks_grade_edit']);
+    Route::post('admin/examinations/marks_grade_edit/{id}', [ExaminationController::class, 'marks_grade_update']);
+    Route::get('admin/examinations/marks_grade_delete/{id}', [ExaminationController::class, 'marks_grade_delete']);
+
+    Route::get('/admin/fees_collection/collect_fees/', [FeesCollectionController::class, 'collect_fees']);
+    Route::get('/admin/fees_collection/collect_fees/add_fees/{student_id}', [FeesCollectionController::class, 'collect_fees_add']);
+    Route::post('/admin/fees_collection/collect_fees/add_fees/{student_id}', [FeesCollectionController::class, 'collect_fees_insert']);
+
+
+
 
 });
 
@@ -175,6 +189,10 @@ Route::group(['middleware' => 'teacher'], function () {
     Route::get('/teacher/my_class_subject/timetable/{class_id}/{subject_id}', [ClassTimetableController::class, 'TeacherTimetable']);
 
     Route::get('/teacher/my_exam_timetable', [ExaminationController::class, 'MyExamTimetableTeacher']);
+    Route::get('teacher/marksregister', [ExaminationController::class, 'marks_register_teacher']);
+    Route::post('teacher/submit_marks_register', [ExaminationController::class, 'submit_marks_register']);
+    Route::post('teacher/single_submit_marks_register', [ExaminationController::class, 'single_submit_marks_register']);
+
 });
 
 Route::group(['middleware' => 'student'], function () {
@@ -194,6 +212,8 @@ Route::group(['middleware' => 'student'], function () {
     Route::get('/student/my_exam_timetable', [ExaminationController::class, 'MyExamTimetable']);
 
     Route::get('/student/my_calendar', [CalendarController::class, 'MyCalendar']);
+    Route::get('/student/my_exam_result', [ExaminationController::class, 'MyExamResult']);
+
 
 });
 
@@ -218,6 +238,8 @@ Route::group(['middleware' => 'parent'], function () {
     Route::get('parent/studentmy/soma/{student_id}', [SubjectController::class, 'ParentStudentSubject']);
     Route::get('/parent/studentmy/exam_timetable/{student_id}', [ExaminationController::class, 'ParentMyExamTimetable']);
 
+
+    Route::get('/parent/studentmy/exam_result/{student_id}', [ExaminationController::class, 'ParentMyExamResult']);
 
 });
 

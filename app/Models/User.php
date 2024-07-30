@@ -51,6 +51,14 @@ class User extends Authenticatable
         return self::find($id);
     }
 
+    static public function getSingleClass($id)
+    {
+        return self::select('users.*', 'class.amount', 'class.name as class_name')
+            ->join('class', 'class.id', 'users.class_id')
+            ->where('users.id', '=', $id)
+            ->first();
+    }
+
     static public function getAdmin()
     {
         $return = self::select('users.*')->where('user_type', '=', 1)->where('is_delete', '=', 0);
@@ -174,6 +182,30 @@ class User extends Authenticatable
         return $return;
     }
 
+
+    static public function getCollectFeeStudent()
+    {
+        $return = self::select('users.*', 'class.name as class_name', 'class.amount')
+            ->join('class', 'class.id', '=', 'users.class_id')
+            ->where('users.user_type', '=', 3)
+            ->where('users.is_delete', '=', 0);
+        if (!empty(Request::get('class_id'))) {
+            $return = $return->where('users.class_id', '=', Request::get('class_id'));
+        }
+        if (!empty(Request::get('student_id'))) {
+            $return = $return->where('users.id', '=', Request::get('student_id'));
+        }
+        if (!empty(Request::get('first_name'))) {
+            $return = $return->where('users.name', 'like', '%' . Request::get('first_name') . '%');
+        }
+        if (!empty(Request::get('last_name'))) {
+            $return = $return->where('users.last_name', 'like', '%' . Request::get('last_name') . '%');
+        }
+
+
+        $return = $return->orderBy('users.name', 'asc')->paginate(100);
+        return $return;
+    }
 
     static public function getStudentClass($class_id)
     {

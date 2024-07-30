@@ -38,6 +38,21 @@ class ExamScheduleModel extends Model
 
     }
 
+    static public function getExamTeacher($teacher_id)
+    {
+
+        return ExamScheduleModel::select('exam_schedule_insert.*', 'exam.name as exam_name')
+            ->join('exam', 'exam.id', '=', 'exam_schedule_insert.exam_id')
+            ->join('assign_class_teacher', 'assign_class_teacher.class_id', '=', 'exam_schedule_insert.class_id')
+            ->where('assign_class_teacher.teacher_id', '=', $teacher_id)
+
+            ->groupBy('exam_schedule_insert.exam_id')
+            ->orderBy('exam_schedule_insert.id', 'desc')
+            ->get();
+
+
+    }
+
     static public function getExamTimetable($exam_id, $class_id)
     {
 

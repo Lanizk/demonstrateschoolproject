@@ -112,6 +112,9 @@
 
                                         <a class="btn btn-primary btn-sm"
                                             href="{{url('parent/studentmy/exam_timetable/' . $value->id)}}">ExamTimetable</a>
+
+                                        <a class="btn btn-primary btn-sm"
+                                            href="{{url('parent/studentmy/exam_result/' . $value->id)}}">ExamResult</a>
                                     </td>
 
 

@@ -212,9 +212,10 @@
                             <p>Parent</p>
                         </a>
                     </li>
-                    <li class="nav-item
-                                                                            @if (Request::segment(2) == 'class' || Request::segment(2) == 'subject' || Request::segment(2) == 'assign_subject' || Request::segment(2) == 'assign_class_teacher')
-                                                                            menu-is-opening menu-open active @endif">
+                    <li
+                        class="nav-item
+                                                                                                        @if (Request::segment(2) == 'class' || Request::segment(2) == 'subject' || Request::segment(2) == 'assign_subject' || Request::segment(2) == 'assign_class_teacher')
+                                                                                                        menu-is-opening menu-open active @endif">
                         <a href="#"
                             class="nav-link @if (Request::segment(2) == 'class' || Request::segment(2) == 'subject' || Request::segment(2) == 'assign_subject' || Request::segment(2) == 'assign_class_teacher') active @endif">
                             <i class="nav-icon fas fa-table"></i>
@@ -262,9 +263,33 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="nav-item
-                                                                            @if (Request::segment(2) == 'Examinations')
-                                                                            menu-is-opening menu-open active @endif">
+
+                    <li
+                        class="nav-item @if (Request::segment(2) == 'fees_collection')  menu-is-opening menu-open active @endif">
+                        <a href="#" class="nav-link @if (Request::segment(2) == 'fees_collection') active @endif">
+                            <i class="nav-icon fas fa-table"></i>
+                            <p>
+                                Fees Collection
+                                <i class="fas fa-angle-left right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{url('admin/fees_collection/collect_fees')}}"
+                                    class="nav-link @if (Request::segment(3) == 'collect_fees') active @endif">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Collect Fees</p>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </li>
+
+
+                    <li
+                        class="nav-item
+                                                                                                        @if (Request::segment(2) == 'Examinations')
+                                                                                                        menu-is-opening menu-open active @endif">
                         <a href="#" class="nav-link @if (Request::segment(2) == 'Examinations') active @endif">
                             <i class="nav-icon fas fa-table"></i>
                             <p>
@@ -297,8 +322,49 @@
                                     <p>Marks Register</p>
                                 </a>
                             </li>
+
+                            <li class="nav-item">
+                                <a href="{{url('/admin/examinations/marks_grade_list')}}"
+                                    class="nav-link @if (Request::segment(3) == 'marksgrade') active @endif">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Marks Grade</p>
+                                </a>
+                            </li>
                         </ul>
                     </li>
+
+                    <li
+                        class="nav-item
+                                                                                                        @if (Request::segment(2) == 'Examinations')
+                                                                                                        menu-is-opening menu-open active @endif">
+                        <a href="#" class="nav-link @if (Request::segment(2) == 'Examinations') active @endif">
+                            <i class="nav-icon fas fa-table"></i>
+                            <p>
+                                Examinations
+                                <i class="fas fa-angle-left right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{url('admin/examinations/exam/list')}}"
+                                    class="nav-link @if (Request::segment(3) == 'exam') active @endif">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Exam</p>
+                                </a>
+                            </li>
+
+
+
+                            <li class="nav-item">
+                                <a href="{{url('/admin/examinations/marks_grade_list')}}"
+                                    class="nav-link @if (Request::segment(3) == 'marksgrade') active @endif">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Marks Grade</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
                     <li class="nav-item">
                         <a href="{{url('admin/my_account')}}" class="nav-link  @if (Request::segment(2) == 'my_account') active 
                          @endif">
@@ -340,6 +406,13 @@
                             class="nav-link @if (Request::segment(2) == 'my_exam_timetable') active @endif">
                             <i class="far fa-user nav-icon"></i>
                             <p>My Exam Timetable</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{url('teacher/marksregister')}}"
+                            class="nav-link @if (Request::segment(2) == 'marksregister') active @endif">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Marks Register</p>
                         </a>
                     </li>
                     <li class="nav-item">
@@ -392,6 +465,14 @@
                             class="nav-link @if (Request::segment(2) == 'my_exam_timetable') active @endif">
                             <i class="far fa-user nav-icon"></i>
                             <p>My Exam Timetable</p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{{url('student/my_exam_result')}}"
+                            class="nav-link @if (Request::segment(2) == 'my_exam_result') active @endif">
+                            <i class="far fa-user nav-icon"></i>
+                            <p>My Exam Result</p>
                         </a>
                     </li>
 
