@@ -1,10 +1,96 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Http;
 
 class MpesaController extends Controller
 {
-    //
+
+    public function token(){
+        $consumerKey='OJp3VgzAJ3VLxicvc2GOLVil1oABSHmCnPtepKpG28JrgXO1';
+        $consumerSecret='bZIBEwEVpTaQGLcmmdulAuu9iPJmbDaC7Y3yWdt58MHQLQN2B9Ds5vctDlGTV0BA';
+        $url='https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials';
+
+
+        $response=Http::withBasicAuth($consumerKey,$consumerSecret)->get($url);
+        //$accessToken = $response->json()['access_token'];
+        return $response['access_token'];
+    }
+
+    public function lipNaMpesaPassword(){
+        $timestamp=Carbon::rawParse('now')->format('YmdHms');
+
+    }
+
+    public function registerUrl(){
+        $accessToken=$this->token();
+        $url='https://sandbox.safaricom.co.ke/mpesa/c2b/v1/registerurl';
+        $ShortCode=600998;
+        $ResponseType='completed';
+        $ConfirmationURL='https://fadf-102-219-208-154.ngrok-free.app/payments/confirmation';
+        $ValidationURL='https://fadf-102-219-208-154.ngrok-free.app/payments/validation';
+
+
+        $response=Http::withToken($accessToken)->post($url,[
+            'ShortCode'=>$ShortCode,
+            'ResponseType'=>$ResponseType,
+            'ConfirmationURL'=>$ConfirmationURL,
+            'ValidationURL'=>$ValidationURL,
+        ]);
+
+        return $response;
+
+    }
+
+
+    public function Simulate(){
+
+        $accessToken=$this->token();
+        $url='https://sandbox.safaricom.co.ke/mpesa/c2b/v1/simulate';
+        $ShortCode=600998;
+        $CommandID='CustomerPayBillOnline';
+        $Amount=1;
+        $Msisdn=254708374149;
+        $BillRefNumber='0000';
+        $response=Http::withToken($accessToken)->post($url,[
+            'ShortCode'=>$ShortCode,
+            'CommandID'=>$CommandID,
+            'Amount'=>$Amount,
+            'Msisdn'=>$Msisdn,
+            'BillRefNumber'=>$BillRefNumber,
+        ]);
+        return $response;
+
+    }
+
+
+    public function Validation(){
+        $data=file_get_contents('php://input');
+        Storage::disk('local')->put('validation.txt',$data);
+
+        //validation logic
+        return response()->json([
+            'ResultCode'=>0,
+            'ResultDesc'=>'Accepted',
+        ]);
+
+        // return response()->json([
+        //         'ResultCode'=>'C2B0011',
+        //          'ResultDesc'=>'Rejeted',
+        //     ])
+
+
+
+    }
+
+    public function Confirmation(){
+        $data=file_get_contents('php://input');
+        Storage::disk('local')->put('validation.txt',$data);
+    }
+
+
+
 }

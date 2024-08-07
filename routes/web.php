@@ -15,7 +15,27 @@ use App\Http\Controllers\AssignClassTeacherController;
 use App\Http\Controllers\ClassTimetableController;
 use App\Http\Controllers\ExaminationController;
 use App\Http\Controllers\CalendarController;
+use App\Http\Controllers\MpesaController;
 use Illuminate\Support\Facades\Route;
+
+
+
+
+Route::controller(MpesaController::class)
+->prefix('payments')
+->as('payments')
+->group(function(){
+Route::get('/token','token')->name('token');
+Route::get('/registerurl','registerUrl')->name('registerurl');
+Route::get('/validation','Validation')->name('validation');
+Route::get('/confirmation','confirmation')->name('confirmation');
+Route::get('/simulate','Simulate')->name('simulate');
+});
+
+
+
+
+
 
 // Route::get('/', function () {
 //     return view('welcome');
