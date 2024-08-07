@@ -330,6 +330,12 @@ class User extends Authenticatable
         return $return;
     }
 
+    static public function getPaidAmount($student_id, $class_id)
+    {
+        return StudentAddFeesModel::getPaidAmount($student_id, $class_id);
+
+    }
+
 
 
     static public function getEmailSingle($email)

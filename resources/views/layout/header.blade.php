@@ -214,8 +214,8 @@
                     </li>
                     <li
                         class="nav-item
-                                                                                                        @if (Request::segment(2) == 'class' || Request::segment(2) == 'subject' || Request::segment(2) == 'assign_subject' || Request::segment(2) == 'assign_class_teacher')
-                                                                                                        menu-is-opening menu-open active @endif">
+                                                                                                                        @if (Request::segment(2) == 'class' || Request::segment(2) == 'subject' || Request::segment(2) == 'assign_subject' || Request::segment(2) == 'assign_class_teacher')
+                                                                                                                        menu-is-opening menu-open active @endif">
                         <a href="#"
                             class="nav-link @if (Request::segment(2) == 'class' || Request::segment(2) == 'subject' || Request::segment(2) == 'assign_subject' || Request::segment(2) == 'assign_class_teacher') active @endif">
                             <i class="nav-icon fas fa-table"></i>
@@ -288,8 +288,8 @@
 
                     <li
                         class="nav-item
-                                                                                                        @if (Request::segment(2) == 'Examinations')
-                                                                                                        menu-is-opening menu-open active @endif">
+                                                                                                                        @if (Request::segment(2) == 'Examinations')
+                                                                                                                        menu-is-opening menu-open active @endif">
                         <a href="#" class="nav-link @if (Request::segment(2) == 'Examinations') active @endif">
                             <i class="nav-icon fas fa-table"></i>
                             <p>
@@ -335,8 +335,8 @@
 
                     <li
                         class="nav-item
-                                                                                                        @if (Request::segment(2) == 'Examinations')
-                                                                                                        menu-is-opening menu-open active @endif">
+                                                                                                                        @if (Request::segment(2) == 'Examinations')
+                                                                                                                        menu-is-opening menu-open active @endif">
                         <a href="#" class="nav-link @if (Request::segment(2) == 'Examinations') active @endif">
                             <i class="nav-icon fas fa-table"></i>
                             <p>
@@ -435,6 +435,14 @@
                          @endif">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Dashboard </p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{{url('student/fees_collection')}}"
+                            class="nav-link @if (Request::segment(2) == 'fees_collection') active @endif">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Pay Fees</p>
                         </a>
                     </li>
                     <li class="nav-item">

@@ -214,6 +214,9 @@ Route::group(['middleware' => 'student'], function () {
     Route::get('/student/my_calendar', [CalendarController::class, 'MyCalendar']);
     Route::get('/student/my_exam_result', [ExaminationController::class, 'MyExamResult']);
 
+    Route::get('/student/fees_collection/', [FeesCollectionController::class, 'CollectFeesStudents']);
+    Route::post('/student/fees_collection/', [FeesCollectionController::class, 'CollectFeesStudentsPayment']);
+
 
 });
 

@@ -22,8 +22,7 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>Collect Fees<span style="color:blue;">({{$getStudent->name}}
-                                    {{$getStudent->last_name}})</span></h1>
+                            <h1> Fees Collection</h1>
                         </div>
                         <div class="col-sm-6" style="text-align: right;">
                             <button type="button" class="btn btn-primary" id="AddFees">Add Fees</button>
@@ -131,8 +130,8 @@
                                 <label class="col-form-label">PaymentType:<span style="color:red;">*</span></label>
                                 <select class="form-control" name="payment_type" required>
                                     <option value="">Select</option>
-                                    <option value="Cash">Cash</option>
-                                    <option value="Cheque">Cheque</option>
+                                    <option value="Mpesa">Mpesa</option>
+                                    <option value="NationalBank">National Bank</option>
 
                                 </select>
                             </div>

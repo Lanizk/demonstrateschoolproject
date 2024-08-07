@@ -113,40 +113,46 @@
 
                                 </div>
                                 <!-- /.card-header -->
-                                <div class="card-body p-0">
+                                <div class="card-body p-0" style="overflow: scroll;">
                                     <table class="table table-striped">
                                         <thead>
                                             <tr>
 
-                                                <th>Student Id</th>
+                                                <th>StudentId</th>
                                                 <th>StudentName</th>
                                                 <th>ClassName</th>
                                                 <th>TotalAmount</th>
                                                 <th>PaidAmount</th>
-                                                <th>Created Date</th>
+                                                <th>RemainingAmount</th>
+                                                <th>CreatedDate</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             @if(!empty($getRecord))
-                                                @forelse($getRecord as $value)
-                                                    <tr>
-                                                        <td>{{$value->id}}</td>
-                                                        <td>{{$value->name}}{{$value->last_name}}</td>
-                                                        <td>{{$value->class_name}}</td>
-                                                        <td>sh{{number_format($value->amount, 2)}}</td>
-                                                        <td>sh0</td>
-                                                        <td>{{date('d-m-Y', strtotime($value->created_at))}}</td>
-                                                        <td>
-                                                            <a href="{{url('admin/fees_collection/collect_fees/add_fees/' . $value->id)}}"
-                                                                class="btn btn-success">Collect Fees</a>
-                                                        </td>
-                                                    </tr>
-                                                @empty
-                                                    <tr>
-                                                        <td colspan="100%">Record not found</td>
-                                                    </tr>
-                                                @endforelse
+                                                                                    @forelse($getRecord as $value)
+                                                                                                                            @php
+                                                                                                                                $paid_amount = $value->getPaidAmount($value->id, $value->class_id);
+                                                                                                                                $RemainingAmount = $value->amount - $paid_amount;
+                                                                                                                            @endphp
+                                                                                                                            <tr>
+                                                                                                                                <td>{{$value->id}}</td>
+                                                                                                                                <td>{{$value->name}}{{$value->last_name}}</td>
+                                                                                                                                <td>{{$value->class_name}}</td>
+                                                                                                                                <td>sh{{number_format($value->amount, 2)}}</td>
+                                                                                                                                <td>sh{{number_format($paid_amount, 2)}}</td>
+                                                                                                                                <td>sh{{number_format($RemainingAmount, 2)}}</td>
+                                                                                                                                <td>{{date('d-m-Y', strtotime($value->created_at))}}</td>
+                                                                                                                                <td>
+                                                                                                                                    <a href="{{url('admin/fees_collection/collect_fees/add_fees/' . $value->id)}}"
+                                                                                                                                        class="btn btn-success">Collect Fees</a>
+                                                                                                                                </td>
+                                                                                                                            </tr>
+                                                                                    @empty
+                                                                                        <tr>
+                                                                                            <td colspan="100%">Record not found</td>
+                                                                                        </tr>
+                                                                                    @endforelse
                                             @else
                                                 <tr>
                                                     <td colspan="100%">Record not found</td>
