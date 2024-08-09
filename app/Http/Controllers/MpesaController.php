@@ -5,6 +5,9 @@ use Illuminate\Support\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Storage;
+use App\Models\C2brequest;
+
 
 class MpesaController extends Controller
 {
@@ -30,8 +33,8 @@ class MpesaController extends Controller
         $url='https://sandbox.safaricom.co.ke/mpesa/c2b/v1/registerurl';
         $ShortCode=600998;
         $ResponseType='completed';
-        $ConfirmationURL='https://fadf-102-219-208-154.ngrok-free.app/payments/confirmation';
-        $ValidationURL='https://fadf-102-219-208-154.ngrok-free.app/payments/validation';
+        $ConfirmationURL='https://debb-102-219-208-154.ngrok-free.app/payments/confirmation';
+        $ValidationURL='https://debb-102-219-208-154.ngrok-free.app/payments/validation';
 
 
         $response=Http::withToken($accessToken)->post($url,[
@@ -89,6 +92,21 @@ class MpesaController extends Controller
     public function Confirmation(){
         $data=file_get_contents('php://input');
         Storage::disk('local')->put('validation.txt',$data);
+
+        
+        $TransactionType='';
+        $TransID='';
+        $TransTime='';
+        $TransAmount='';
+        $BusinessShortCode='';
+        $BillRefNumber='';
+        $InvoiceNumber='';
+        $OrgAccountBalance='';
+        $ThirdPartyTransID='';
+        $MSISDN='';
+        $FirstName='';
+        $MiddleName='';
+        $LastName='';
     }
 
 

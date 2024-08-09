@@ -27,8 +27,8 @@ Route::controller(MpesaController::class)
 ->group(function(){
 Route::get('/token','token')->name('token');
 Route::get('/registerurl','registerUrl')->name('registerurl');
-Route::get('/validation','Validation')->name('validation');
-Route::get('/confirmation','confirmation')->name('confirmation');
+Route::post('/validation','Validation')->name('validation');
+Route::post('/confirmation','confirmation')->name('confirmation');
 Route::get('/simulate','Simulate')->name('simulate');
 });
 
