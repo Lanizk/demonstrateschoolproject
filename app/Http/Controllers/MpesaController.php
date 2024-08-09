@@ -74,6 +74,41 @@ class MpesaController extends Controller
         $data=file_get_contents('php://input');
         Storage::disk('local')->put('validation.txt',$data);
 
+
+
+        $response=json_decode($data);
+        $TransactionType=$response->TransactionType;
+        $TransID=$response->TransID;
+        $TransTime=$response->TransTime;
+        $TransAmount=$response->TransAmount;
+        $BusinessShortCode=$response->BusinessShortCode;
+        $BillRefNumber=$response->BillRefNumber;
+        $InvoiceNumber=$response->InvoiceNumber;
+        $OrgAccountBalance=$response->OrgAccountBalance;
+        $ThirdPartyTransID=$response->ThirdPartyTransID;
+        $MSISDN=$response->MSISDN;
+        $FirstName=$response->FirstName;
+        $MiddleName=$response->MiddleName;
+        $LastName=$response->LastName;
+
+
+        $c2b=new C2brequest;
+        $c2b->TransactionType=$TransactionType;
+        $c2b->TransID=$TransID;
+        $c2b->TransTime=$TransTime;
+        $c2b->TransAmount=$TransAmount;
+        $c2b->BusinessShortCode=$BusinessShortCode;
+        $c2b->BillRefNumber=$BillRefNumber;
+        $c2b->InvoiceNumber=$InvoiceNumber;
+        $c2b->OrgAccountBalance=$OrgAccountBalance;
+        $c2b->ThirdPartyTransID=$ThirdPartyTransID;
+        $c2b->MSISDN=$MSISDN;
+        $c2b->FirstName=$FirstName;
+        $c2b->MiddleName=$MiddleName;
+        $c2b->LastName=$LastName;
+        $c2b->save();
+
+
         //validation logic
         return response()->json([
             'ResultCode'=>0,
@@ -93,20 +128,8 @@ class MpesaController extends Controller
         $data=file_get_contents('php://input');
         Storage::disk('local')->put('validation.txt',$data);
 
-        
-        $TransactionType='';
-        $TransID='';
-        $TransTime='';
-        $TransAmount='';
-        $BusinessShortCode='';
-        $BillRefNumber='';
-        $InvoiceNumber='';
-        $OrgAccountBalance='';
-        $ThirdPartyTransID='';
-        $MSISDN='';
-        $FirstName='';
-        $MiddleName='';
-        $LastName='';
+
+
     }
 
 

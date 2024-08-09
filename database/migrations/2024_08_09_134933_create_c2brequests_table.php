@@ -13,6 +13,20 @@ return new class extends Migration
     {
         Schema::create('c2brequests', function (Blueprint $table) {
             $table->id();
+            $table->string('TransactionType');
+            $table->string('TransID');
+            $table->string('TransTime');
+            $table->string('TransAmount');
+            $table->string('BusinessShortCode');
+            $table->string('BillRefNumber');
+            $table->string('InvoiceNumber')->nullable();
+            $table->string('OrgAccountBalance');
+            $table->string('ThirdPartyTransID')->nullable();
+            $table->string('MSISDN');
+            $table->string('FirstName');
+            $table->string('MiddleName')->nullable();
+            $table->string('LastName')->nullable();
+  
             $table->timestamps();
         });
     }
