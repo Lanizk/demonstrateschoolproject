@@ -19,7 +19,8 @@ return Application::configure(basePath: dirname(__DIR__))
         ]);
 
         $middleware->validateCsrfTokens(except: [
-            '/payments/*'
+            '/payments/*',
+            '/send-sms'
            
         ]);
         //

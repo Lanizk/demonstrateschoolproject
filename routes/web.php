@@ -16,6 +16,7 @@ use App\Http\Controllers\ClassTimetableController;
 use App\Http\Controllers\ExaminationController;
 use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\MpesaController;
+use App\Http\Controllers\SMSController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -36,10 +37,8 @@ Route::get('/simulate','Simulate')->name('simulate');
 
 
 
+Route::post('/send-sms', [SMSController::class, 'sendSms']);
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
 
 Route::get('/', [AuthController::class, 'login']);
 Route::post('login', [AuthController::class, 'Authlogin']);
