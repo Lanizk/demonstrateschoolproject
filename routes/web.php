@@ -36,7 +36,7 @@ Route::get('/simulate','Simulate')->name('simulate');
 
 
 
-
+Route::get('/show-sms', [SMSController::class, 'showSms']);
 Route::post('/send-sms', [SMSController::class, 'sendSms']);
 
 

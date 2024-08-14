@@ -12,6 +12,12 @@ class SmsController extends Controller
         $this->smsService = $smsService;
     }
 
+
+    public function showSms()
+    {
+        return view('admin.SMS.bulk');
+    }
+
     public function sendSms(Request $request)
     {
         $request->validate([
