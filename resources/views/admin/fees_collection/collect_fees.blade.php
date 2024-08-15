@@ -120,6 +120,7 @@
 
                                                 <th>StudentId</th>
                                                 <th>StudentName</th>
+                                                <th>AdmissionNumber</th>
                                                 <th>ClassName</th>
                                                 <th>TotalAmount</th>
                                                 <th>PaidAmount</th>
@@ -138,6 +139,7 @@
                                                                                                                             <tr>
                                                                                                                                 <td>{{$value->id}}</td>
                                                                                                                                 <td>{{$value->name}}{{$value->last_name}}</td>
+                                                                                                                                <td>{{$value->admission_no}}</td>
                                                                                                                                 <td>{{$value->class_name}}</td>
                                                                                                                                 <td>sh{{number_format($value->amount, 2)}}</td>
                                                                                                                                 <td>sh{{number_format($paid_amount, 2)}}</td>

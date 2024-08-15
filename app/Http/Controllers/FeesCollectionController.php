@@ -50,6 +50,7 @@ class FeesCollectionController extends Controller
                 $remaining_amount_user = $RemainingAmount - $request->amount;
                 $payment = new StudentAddFeesModel;
                 $payment->student_id = $student_id;
+                $payment->admission_no= $getStudent->admission_no;
                 $payment->class_id = $getStudent->class_id;
                 $payment->paid_amount = $request->amount;
                 $payment->total_amount = $RemainingAmount;

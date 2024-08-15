@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('TransTime');
             $table->string('TransAmount');
             $table->string('BusinessShortCode');
-            $table->string('BillRefNumber');
+            $table->string('admission_no');
             $table->string('InvoiceNumber')->nullable();
             $table->string('OrgAccountBalance');
             $table->string('ThirdPartyTransID')->nullable();

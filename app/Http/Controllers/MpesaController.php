@@ -7,7 +7,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 use App\Models\C2brequest;
-
+use App\Models\StudentAddFeesModel;
+use App\Models\User;
 
 class MpesaController extends Controller
 {
@@ -33,8 +34,8 @@ class MpesaController extends Controller
         $url='https://sandbox.safaricom.co.ke/mpesa/c2b/v1/registerurl';
         $ShortCode=600998;
         $ResponseType='completed';
-        $ConfirmationURL='https://debb-102-219-208-154.ngrok-free.app/payments/confirmation';
-        $ValidationURL='https://debb-102-219-208-154.ngrok-free.app/payments/validation';
+        $ConfirmationURL='https://6365-102-219-210-106.ngrok-free.app/payments/confirmation';
+        $ValidationURL='https://6365-102-219-210-106.ngrok-free.app/payments/validation';
 
 
         $response=Http::withToken($accessToken)->post($url,[
@@ -98,7 +99,7 @@ class MpesaController extends Controller
         $c2b->TransTime=$TransTime;
         $c2b->TransAmount=$TransAmount;
         $c2b->BusinessShortCode=$BusinessShortCode;
-        $c2b->BillRefNumber=$BillRefNumber;
+        $c2b->admission_no=$BillRefNumber;
         $c2b->InvoiceNumber=$InvoiceNumber;
         $c2b->OrgAccountBalance=$OrgAccountBalance;
         $c2b->ThirdPartyTransID=$ThirdPartyTransID;
@@ -107,6 +108,32 @@ class MpesaController extends Controller
         $c2b->MiddleName=$MiddleName;
         $c2b->LastName=$LastName;
         $c2b->save();
+
+
+
+        $student = User::where('admission_no', $BillRefNumber)->first();
+
+        if ($student) {
+            // Find the corresponding financial record
+            $studentFees = StudentAddFeesModel::where('student_id', $student->id)->first();
+    
+            if ($studentFees) {
+                // Update the student's financial record
+                $studentFees->amount_paid += $TransAmount;
+                $studentFees->save();
+            } else {
+                // Handle the case where no financial record exists (optional)
+                // Example: create a new financial record if it doesn't exist
+                StudentAddFeesModel::create([
+                    'student_id' => $student->id,
+                    'paid_amount' => $TransAmount,
+                    // Add other necessary fields
+                ]);
+            }
+        } else {
+            // Handle case where student is not found
+            // Optional: Log or notify about the unmatched admission number
+        }
 
 
         //validation logic
@@ -128,6 +155,10 @@ class MpesaController extends Controller
         $data=file_get_contents('php://input');
         Storage::disk('local')->put('validation.txt',$data);
 
+ return response()->json([
+                'ResultCode'=>'C2B0011',
+                 'ResultDesc'=>'Rejeted',
+ ]);
 
 
     }

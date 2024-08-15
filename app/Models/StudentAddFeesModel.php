@@ -10,6 +10,13 @@ class StudentAddFeesModel extends Model
     use HasFactory;
     protected $table = 'student_add_fees';
 
+    protected $fillable = [
+        'student_id',
+        'paid_amount', 
+        'balance',
+        
+    ];
+
     static public function getSingle($id)
     {
         return self::find($id);
