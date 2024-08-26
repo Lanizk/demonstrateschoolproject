@@ -34,8 +34,8 @@ class MpesaController extends Controller
         $url='https://sandbox.safaricom.co.ke/mpesa/c2b/v1/registerurl';
         $ShortCode=600998;
         $ResponseType='completed';
-        $ConfirmationURL='https://6365-102-219-210-106.ngrok-free.app/payments/confirmation';
-        $ValidationURL='https://6365-102-219-210-106.ngrok-free.app/payments/validation';
+        $ConfirmationURL='https://4643-102-219-210-106.ngrok-free.app/payments/confirmation';
+        $ValidationURL='https://4643-102-219-210-106.ngrok-free.app/payments/validation';
 
 
         $response=Http::withToken($accessToken)->post($url,[
@@ -111,43 +111,44 @@ class MpesaController extends Controller
 
 
 
+
+
         $student = User::where('admission_no', $BillRefNumber)->first();
-
         if ($student) {
-            // Find the corresponding financial record
-            $studentFees = StudentAddFeesModel::where('student_id', $student->id)->first();
-    
-            if ($studentFees) {
-                // Update the student's financial record
-                $studentFees->amount_paid += $TransAmount;
-                $studentFees->save();
-            } else {
-                // Handle the case where no financial record exists (optional)
-                // Example: create a new financial record if it doesn't exist
-                StudentAddFeesModel::create([
-                    'student_id' => $student->id,
-                    'paid_amount' => $TransAmount,
-                    // Add other necessary fields
-                ]);
-            }
+        $latestFees = StudentAddFeesModel::where('student_id', $student->id)
+        ->orderBy('created_at', 'desc')
+        ->first();
+        if ($latestFees) {
+        $newTotalAmount = $latestFees->remaining_amount;
         } else {
-            // Handle case where student is not found
-            // Optional: Log or notify about the unmatched admission number
+        $newTotalAmount = 10000; 
         }
+    
+    // Calculate the new remaining amount
+    $newRemainingAmount = $newTotalAmount - $TransAmount;
+    
+    // Create a new record for the payment to maintain history
+    StudentAddFeesModel::create([
+        'student_id' => $student->id,
+        'admission_no'=>$student->admission_no,
+        'class_id'=>$student->class_id,
+        'paid_amount' => $TransAmount,
+        'total_amount' => $newTotalAmount, // Store the new total amount
+        'remaining_amount' => $newRemainingAmount, // Remaining amount after payment
+        'is_payment'=>1,
+        'created_at' => now(),
 
-
+        'payment_type' => 'M-Pesa', // You can set this or pass it dynamically
+    ]);
+  
+} else {
+  
+}
         //validation logic
         return response()->json([
             'ResultCode'=>0,
             'ResultDesc'=>'Accepted',
         ]);
-
-        // return response()->json([
-        //         'ResultCode'=>'C2B0011',
-        //          'ResultDesc'=>'Rejeted',
-        //     ])
-
-
 
     }
 
@@ -159,10 +160,5 @@ class MpesaController extends Controller
                 'ResultCode'=>'C2B0011',
                  'ResultDesc'=>'Rejeted',
  ]);
-
-
     }
-
-
-
 }

@@ -11,9 +11,10 @@ class StudentAddFeesModel extends Model
     protected $table = 'student_add_fees';
 
     protected $fillable = [
-        'student_id',
+        'student_id','admission_no','class_id',
         'paid_amount', 
-        'balance',
+         'total_amount', 'remaining_amount',
+    'created_at', 'payment_type','is_payment'
         
     ];
 
