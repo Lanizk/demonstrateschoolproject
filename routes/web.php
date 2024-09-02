@@ -17,7 +17,20 @@ use App\Http\Controllers\ExaminationController;
 use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\MpesaController;
 use App\Http\Controllers\SMSController;
+use App\Http\Controllers\CommunicateController;
 use Illuminate\Support\Facades\Route;
+
+
+
+Route::get('/test-mail', function () {
+    $user=new stdClass();
+    $user->email='allanmurimi96@gmail.com';
+    $user->send_subject='test email';
+    $user->send_message='this is a test email';
+    Mail::to($user->email)-send(new SendEMailUserMail($user));
+    
+    return 'Test email sent!';
+});
 
 
 
@@ -183,8 +196,10 @@ Route::group(['middleware' => 'admin'], function () {
     Route::get('/admin/fees_collection/collect_fees/add_fees/{student_id}', [FeesCollectionController::class, 'collect_fees_add']);
     Route::post('/admin/fees_collection/collect_fees/add_fees/{student_id}', [FeesCollectionController::class, 'collect_fees_insert']);
 
+    Route::get('/admin/communicate/send_email', [CommunicateController::class, 'SendEmail']);
+    Route::post('/admin/communicate/send_email', [CommunicateController::class, 'SendEmailUser']);
 
-
+    Route::get('/admin/communicate/search_user', [CommunicateController::class, 'SearchUser']);
 
 });
 

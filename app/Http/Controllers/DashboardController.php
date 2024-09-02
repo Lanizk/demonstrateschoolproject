@@ -6,6 +6,11 @@ use Auth;
 
 use Illuminate\Http\Request;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
+use App\Models\User;
+use App\Models\StudentAddFeesModel;
+use App\Models\ExamModel;
+use App\Models\ClassModel;
+use App\Models\SubjectModel;
 
 class DashboardController extends Controller
 {
@@ -13,6 +18,18 @@ class DashboardController extends Controller
     {
         $data['header_title'] = 'Dashboard';
         if (Auth::user()->user_type == 1) {
+
+            $data['getTotalFees']=StudentAddFeesModel::getTotalFees();
+            $data['getTotalTodayFees']=StudentAddFeesModel::getTotalTodayfees();
+            $data['TotalAdmin']=User::getTotalUser(1);
+            $data['TotalTeacher']=User::getTotalUser(2);
+            $data['TotalStudent']=User::getTotalUser(3);
+            $data['TotalParent']=User::getTotalUser(4);
+
+            $data['TotalExam']=ExamModel::getTotalExam();
+            $data['TotalClass']=ClassModel::getTotalClass();
+            $data['TotalSubject']=SubjectModel::getTotalSubject();
+
             return view('admin.admin.dashboard', $data);
 
         } else if (Auth::user()->user_type == 2) {

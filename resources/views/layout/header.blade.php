@@ -286,6 +286,28 @@
                     </li>
 
 
+
+                    <li
+                        class="nav-item @if (Request::segment(2) == 'fees_collection')  menu-is-opening menu-open active @endif">
+                        <a href="#" class="nav-link @if (Request::segment(2) == 'fees_collection') active @endif">
+                            <i class="nav-icon fas fa-table"></i>
+                            <p>
+                                Communicate
+                                <i class="fas fa-angle-left right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{url('admin/communicate/send_email')}}"
+                                    class="nav-link @if (Request::segment(3) == 'send_email') active @endif">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Send Email</p>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </li>
+
                     <li
                         class="nav-item
                                                                                                                         @if (Request::segment(2) == 'Examinations')
