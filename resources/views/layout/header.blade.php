@@ -306,6 +306,16 @@
                             </li>
 
                         </ul>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{url('/show-sms')}}"
+                                    class="nav-link @if (Request::segment(3) == 'send_email') active @endif">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Send SMS</p>
+                                </a>
+                            </li>
+
+                        </ul>
                     </li>
 
                     <li

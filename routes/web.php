@@ -49,8 +49,7 @@ Route::get('/simulate','Simulate')->name('simulate');
 
 
 
-Route::get('/show-sms', [SMSController::class, 'showSms']);
-Route::post('/send-sms', [SMSController::class, 'sendSms']);
+
 
 
 Route::get('/', [AuthController::class, 'login']);
@@ -71,6 +70,11 @@ Route::get('/admin/admin/list', function () {
 
 
 Route::group(['middleware' => 'admin'], function () {
+
+    Route::get('/show-sms', [SMSController::class, 'showSms']);
+    Route::post('/send-sms', [SMSController::class, 'sendSms']);
+
+
     Route::get('/admin/dashboard', [DashboardController::class, 'dashboard']);
     Route::get('/admin/admin/list', [AdminController::class, 'list']);
     Route::get('/admin/admin/add', [AdminController::class, 'add']);
