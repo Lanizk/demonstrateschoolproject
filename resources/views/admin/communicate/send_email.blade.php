@@ -57,7 +57,7 @@
                                     <label style="display:block;">Message To </label>
                                     <label style="margin-right: 50px"><input type="checkbox" value="3" name="message_to[]"> Student</label>
                                     <label style="margin-right: 50px"><input type="checkbox" value="4" name="message_to[]"> Parent</label>
-                                    <label> <input type="checkbox" value="4" name="message_to[]">Teacher</label>
+                                    <label> <input type="checkbox" value="2" name="message_to[]">Teacher</label>
                                  </div>
                                  <div class="form-group">
                                     <label>Message</label>

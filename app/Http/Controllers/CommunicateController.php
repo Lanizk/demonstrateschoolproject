@@ -51,7 +51,7 @@ class CommunicateController extends Controller
 
     public function SendEmailUser(Request $request)
     {
-
+       
         
       if(!empty($request->user_id))
       {
@@ -61,6 +61,21 @@ class CommunicateController extends Controller
 
         Mail::to($user->email)->send(new SendEMailUserMail($user));
             
+      }
+
+      if(!empty($request->message_to))
+      {
+        foreach($request->message_to as $user_type)
+        {
+            $getUser=User::getUser($user_type);
+            foreach($getUser as $user)
+            {
+                $user->send_message=$request->message;
+                $user->send_subject=$request->subject;
+                Mail::to($user->email)->send(new SendEMailUserMail($user));
+            
+            }
+        }
       }
       return redirect()->back()->with('success', "Mail Successfully Sent");
     }

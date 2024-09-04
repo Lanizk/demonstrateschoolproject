@@ -181,7 +181,7 @@ class StudentController extends Controller
     {
         $data['getRecord'] = User::getTeacherStudent(Auth::User()->id);
         $data['header_title'] = "My Student List";
-        return view('admin.teacher.MyStudent', $data);
+        return view('admin.teacher.mystudent', $data);
     }
 
 

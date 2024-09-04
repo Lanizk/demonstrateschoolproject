@@ -11,6 +11,9 @@ use App\Models\StudentAddFeesModel;
 use App\Models\ExamModel;
 use App\Models\ClassModel;
 use App\Models\SubjectModel;
+use App\Models\AssignClassTeacherModel;
+use App\Models\classSubjectModel;
+
 
 class DashboardController extends Controller
 {
@@ -33,9 +36,22 @@ class DashboardController extends Controller
             return view('admin.admin.dashboard', $data);
 
         } else if (Auth::user()->user_type == 2) {
+           
+            $data['TotalStudent']=User::getTeacherStudentCount(Auth::user()->id);
+            $data['TotalClass']=AssignClassTeacherModel::getMyClassSubjectGroupCount(Auth::user()->id);
+            $data['TotalSubject']=AssignClassTeacherModel::getMyClassSubjectCount(Auth::user()->id);
+
             return view('teacher.dashboard', $data);
 
         } else if (Auth::user()->user_type == 3) {
+
+            $data['totalPaidAmount']=StudentAddFeesModel::TotalPaidAmountStudent(Auth::user()->id);
+            $data['getTotalTodayFees']=StudentAddFeesModel::getTotalTodayfees();
+           
+
+            $data['TotalExam']=ExamModel::getTotalExam();
+            $data['TotalClass']=ClassModel::getTotalClass();
+            $data['TotalSubject']=classSubjectModel::MySubjectTotal(Auth::user()->class_id);
             return view('student.dashboard', $data);
 
         } else if (Auth::user()->user_type == 4) {
