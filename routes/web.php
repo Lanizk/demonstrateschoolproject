@@ -18,6 +18,8 @@ use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\MpesaController;
 use App\Http\Controllers\SMSController;
 use App\Http\Controllers\CommunicateController;
+use App\Http\Controllers\AttendanceController;
+use App\Http\Controllers\HomeworkController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -45,6 +47,7 @@ Route::post('/validation','Validation')->name('validation');
 Route::post('/confirmation','confirmation')->name('confirmation');
 Route::get('/simulate','Simulate')->name('simulate');
 });
+
 
 
 
@@ -188,6 +191,8 @@ Route::group(['middleware' => 'admin'], function () {
     Route::post('admin/examinations/single_submit_marks_register', [ExaminationController::class, 'single_submit_marks_register']);
 
 
+    Route::get('admin/attendance/student', [AttendanceController::class, 'AttendanceStudent']);
+    Route::post('admin/attendance/student/save', [AttendanceController::class, 'AttendanceStudentSubmit']);
 
     Route::get('/admin/examinations/marks_grade_list', [ExaminationController::class, 'marks_grade']);
     Route::get('/admin/examinations/mark_grades/add', [ExaminationController::class, 'marks_grade_add']);
@@ -197,6 +202,7 @@ Route::group(['middleware' => 'admin'], function () {
     Route::get('admin/examinations/marks_grade_delete/{id}', [ExaminationController::class, 'marks_grade_delete']);
 
     Route::get('/admin/fees_collection/collect_fees/', [FeesCollectionController::class, 'collect_fees']);
+    Route::get('/admin/fees/collect_fees_report', [FeesCollectionController::class, 'collect_fees_report']);
     Route::get('/admin/fees_collection/collect_fees/add_fees/{student_id}', [FeesCollectionController::class, 'collect_fees_add']);
     Route::post('/admin/fees_collection/collect_fees/add_fees/{student_id}', [FeesCollectionController::class, 'collect_fees_insert']);
 
@@ -204,7 +210,12 @@ Route::group(['middleware' => 'admin'], function () {
     Route::post('/admin/communicate/send_email', [CommunicateController::class, 'SendEmailUser']);
 
     Route::get('/admin/communicate/search_user', [CommunicateController::class, 'SearchUser']);
+    Route::get('/admin/homework/homework', [HomeworkController::class, 'Homework']);
+    Route::get('/admin/homework/homework/add', [HomeworkController::class, 'add']);
+    Route::post('admin/ajax_get_subject', [HomeworkController::class, 'ajax_get_subject']);
+    Route::post('/admin/homework/homework/add', [HomeworkController::class, 'insert']);
 
+    Route::get('/admin/homework/homework/edit/{id}', [HomeworkController::class, 'edit']);
 });
 
 Route::group(['middleware' => 'teacher'], function () {

@@ -386,9 +386,6 @@
             var exam_work = $('#exam_work_' + student_id + subject_id).val();
 
 
-
-
-
             $.ajax({
                 type: "POST",
                 url: "{{url('admin/examinations/single_submit_marks_register')}}",
@@ -403,9 +400,6 @@
                     home_work: home_work,
                     test_work: test_work,
                     exam_work: exam_work,
-
-
-
 
                 },
                 dataType: "json",

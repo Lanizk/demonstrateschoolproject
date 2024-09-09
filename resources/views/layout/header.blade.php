@@ -283,6 +283,17 @@
                             </li>
 
                         </ul>
+
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{url('admin/fees/collect_fees_report')}}"
+                                    class="nav-link @if (Request::segment(3) == 'collect_fees_report') active @endif">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Fees Report</p>
+                                </a>
+                            </li>
+
+                        </ul>
                     </li>
 
 
@@ -396,6 +407,57 @@
                             </li>
                         </ul>
                     </li>
+
+
+                    <li
+                        class="nav-item
+                                                                                                                        @if (Request::segment(2) == 'Examinations')
+                                                                                                                        menu-is-opening menu-open active @endif">
+                        <a href="#" class="nav-link @if (Request::segment(2) == 'attendance') active @endif">
+                            <i class="nav-icon fas fa-table"></i>
+                            <p>
+                                Attendance
+                                <i class="fas fa-angle-left right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{url('admin/attendance/student')}}"
+                                    class="nav-link @if (Request::segment(3) == 'student') active @endif">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Student Attendance</p>
+                                </a>
+                            </li>
+
+
+                        </ul>
+                    </li>
+
+
+                    <li
+                        class="nav-item
+                                                                                                                        @if (Request::segment(2) == 'Examinations')
+                                                                                                                        menu-is-opening menu-open active @endif">
+                        <a href="#" class="nav-link @if (Request::segment(2) == 'attendance') active @endif">
+                            <i class="nav-icon fas fa-table"></i>
+                            <p>
+                                Homework
+                                <i class="fas fa-angle-left right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{url('admin/homework/homework')}}"
+                                    class="nav-link @if (Request::segment(3) == 'homework') active @endif">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Homework</p>
+                                </a>
+                            </li>
+
+
+                        </ul>
+                    </li>
+
 
                     <li class="nav-item">
                         <a href="{{url('admin/my_account')}}" class="nav-link  @if (Request::segment(2) == 'my_account') active 

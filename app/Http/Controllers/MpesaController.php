@@ -111,39 +111,73 @@ class MpesaController extends Controller
 
 
 
-
-
         $student = User::where('admission_no', $BillRefNumber)->first();
         if ($student) {
-        $latestFees = StudentAddFeesModel::where('student_id', $student->id)
-        ->orderBy('created_at', 'desc')
-        ->first();
-        if ($latestFees) {
-        $newTotalAmount = $latestFees->remaining_amount;
+            $getStudent = User::getSingleClass($student->id);
+            $paid_amount = StudentAddFeesModel::getPaidAmount($student->id, $student->class_id);
+
+
+            //$RemainingAmount = $getStudent->amount - $paid_amount;
+            
+    
+            if (!empty($TransAmount)) {
+            $RemainingAmount = $getStudent->amount - $paid_amount;
+            $remaining_amount_user = $RemainingAmount - $TransAmount;
+                // Process the payment
+                $payment = new StudentAddFeesModel;
+                $payment->student_id = $student->id;
+                $payment->class_id = $getStudent->class_id;
+                $payment->admission_no = $BillRefNumber; // Store admission number
+                $payment->paid_amount = $TransAmount;
+                $payment->total_amount = $RemainingAmount;
+                $payment->remaining_amount = $remaining_amount_user;
+                $payment->payment_type = 'M-Pesa';
+                $payment->remark = $TransID;
+                $payment->is_payment = 1;
+                $payment->created_by = $student->id; // Admin who processed the payment
+                $payment->save();
+
+    
+                return response()->json(['success' => true, 'message' => 'Payment processed successfully']);
+            } else {
+                return response()->json(['success' => false, 'message' => 'Amount exceeds the remaining amount']);
+            }
         } else {
-        $newTotalAmount = 10000; 
+            return response()->json(['success' => false, 'message' => 'Student not found']);
         }
     
-    // Calculate the new remaining amount
-    $newRemainingAmount = $newTotalAmount - $TransAmount;
+        
+    //     $student = User::where('admission_no', $BillRefNumber)->first();
+    //     if ($student) {
+    //     $latestFees = StudentAddFeesModel::where('student_id', $student->id)
+    //     ->orderBy('created_at', 'desc')
+    //     ->first();
+    //     if ($latestFees) {
+    //     $newTotalAmount = $latestFees->remaining_amount;
+    //     } else {
+    //     $newTotalAmount = 10000; 
+    //     }
+    
+    // // Calculate the new remaining amount
+    // $newRemainingAmount = $newTotalAmount - $TransAmount;
     
     // Create a new record for the payment to maintain history
-    StudentAddFeesModel::create([
-        'student_id' => $student->id,
-        'admission_no'=>$student->admission_no,
-        'class_id'=>$student->class_id,
-        'paid_amount' => $TransAmount,
-        'total_amount' => $newTotalAmount, // Store the new total amount
-        'remaining_amount' => $newRemainingAmount, // Remaining amount after payment
-        'is_payment'=>1,
-        'created_at' => now(),
+//     StudentAddFeesModel::create([
+//         'student_id' => $student->id,
+//         'admission_no'=>$student->admission_no,
+//         'class_id'=>$student->class_id,
+//         'paid_amount' => $TransAmount,
+//         'total_amount' => $newTotalAmount, // Store the new total amount
+//         'remaining_amount' => $newRemainingAmount, // Remaining amount after payment
+//         'is_payment'=>1,
+//         'created_at' => now(),
 
-        'payment_type' => 'M-Pesa', // You can set this or pass it dynamically
-    ]);
+//         'payment_type' => 'M-Pesa', // You can set this or pass it dynamically
+//     ]);
   
-} else {
+// } else {
   
-}
+// }
         //validation logic
         return response()->json([
             'ResultCode'=>0,

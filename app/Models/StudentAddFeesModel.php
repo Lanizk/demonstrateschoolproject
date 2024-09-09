@@ -23,6 +23,18 @@ class StudentAddFeesModel extends Model
         return self::find($id);
     }
 
+
+    static public function getRecord()
+    {
+        return self::select('student_add_fees.*', 'class.name as class_name', 'users.name as created_name','student.name as student_name_first','student.last_name as student_name_last')
+        ->join('class', 'class.id', '=', 'student_add_fees.class_id')
+        ->join('users as student', 'student.id', '=', 'student_add_fees.student_id')
+        ->join('users', 'users.id', '=', 'student_add_fees.created_by')
+        ->where('student_add_fees.is_payment', '=', 1)
+        ->orderBy('student_add_fees.id','desc')
+        ->paginate(50);
+    }
+
     static public function getFees($student_id)
     {
         return self::select('student_add_fees.*', 'class.name as class_name', 'users.name as created_name')

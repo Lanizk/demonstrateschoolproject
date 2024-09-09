@@ -24,9 +24,10 @@
                         <div class="col-sm-6">
                             <h1> Fees Collection</h1>
                         </div>
-                        <div class="col-sm-6" style="text-align: right;">
+                        
+                        <!-- <div class="col-sm-6" style="text-align: right;">
                             <button type="button" class="btn btn-primary" id="AddFees">Add Fees</button>
-                        </div>
+                        </div> -->
                     </div>
                     @include('_message')
                 </div>
