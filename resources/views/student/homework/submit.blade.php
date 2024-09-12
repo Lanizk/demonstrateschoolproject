@@ -42,33 +42,9 @@
                            <form method="post" action="" enctype="multipart/form-data">
                               {{ csrf_field() }}
                               <div class="card-body">
-                                 <div class="form-group">
-                                     <label>Class <span style="color:red">*</span></label>
-                                     <select class="form-control" id= "getClass" name="class_id" required>
-                                        <option value="">Select Class</option>
-                                        @foreach($getClass as $class)
-                                        <option value="{{$class->id}}">{{$class->name}}</option>
-                                        @endforeach
-                                     </select>
-                                 </div>
-                                  
-                                 <div class="form-group">
-                                     <label>Subject  <span style="color:red">*</span></label>
-                                     <select class="form-control" name="subject_id" id="getSubject" required>
-                                        <option value="">Select Subject</option>
-                                     </select>
-                                 </div>
+                                 
 
-                                 <div class="form-group">
-                                    <label>Homework Date  <span style="color:red">*</span></label>
-                                    <input type="date" class="form-control" name="homework_date" required>
-                                  </div>
-
-                                  <div class="form-group">
-                                    <label>Submission Date  <span style="color:red">*</span></label>
-                                    <input type="date" class="form-control" name="submission_date" required>
-                                  </div>
-
+                                 
                                   <div class="form-group">
                                     <label>Document </label>
                                     <input type="file" class="form-control" name="document_file">
@@ -83,7 +59,7 @@
                               </div>
                               <!-- /.card-body -->
                               <div class="card-footer">
-                                 <button type="submit" class="btn btn-primary">Update</button>
+                                 <button type="submit" class="btn btn-primary">Submit</button>
                               </div>
                            </form>
                         </div>
@@ -119,21 +95,7 @@
            
          
            $('#compose-textarea').summernote({height:200});
-           $('#getClass').change(function(){
-            var class_id=$(this).val();
-            $.ajax({
-                type: "POST",
-                url: "{{url('admin/ajax_get_subject')}}",
-                data: {
-                    "_token": "{{csrf_token()}}",
-                    class_id: class_id,
-                },
-                dataType: "json",
-                success: function (data) {
-                          $('#getSubject').html(data.success);
-                }
-            });
-           });
+           
          });
       </script>
    </body>

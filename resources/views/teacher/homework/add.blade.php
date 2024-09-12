@@ -47,7 +47,7 @@
                                      <select class="form-control" id= "getClass" name="class_id" required>
                                         <option value="">Select Class</option>
                                         @foreach($getClass as $class)
-                                        <option value="{{$class->id}}">{{$class->name}}</option>
+                                        <option value="{{$class->class_id}}">{{$class->class_name}}</option>
                                         @endforeach
                                      </select>
                                  </div>
@@ -83,7 +83,7 @@
                               </div>
                               <!-- /.card-body -->
                               <div class="card-footer">
-                                 <button type="submit" class="btn btn-primary">Update</button>
+                                 <button type="submit" class="btn btn-primary">Submit</button>
                               </div>
                            </form>
                         </div>
@@ -123,7 +123,7 @@
             var class_id=$(this).val();
             $.ajax({
                 type: "POST",
-                url: "{{url('admin/ajax_get_subject')}}",
+                url: "{{url('teacher/ajax_get_subject')}}",
                 data: {
                     "_token": "{{csrf_token()}}",
                     class_id: class_id,

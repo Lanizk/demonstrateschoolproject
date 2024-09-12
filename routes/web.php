@@ -214,8 +214,9 @@ Route::group(['middleware' => 'admin'], function () {
     Route::get('/admin/homework/homework/add', [HomeworkController::class, 'add']);
     Route::post('admin/ajax_get_subject', [HomeworkController::class, 'ajax_get_subject']);
     Route::post('/admin/homework/homework/add', [HomeworkController::class, 'insert']);
-
     Route::get('/admin/homework/homework/edit/{id}', [HomeworkController::class, 'edit']);
+    Route::post('/admin/homework/homework/edit/{id}', [HomeworkController::class, 'update']);
+    Route::get('/admin/homework/homework/delete/{id}', [HomeworkController::class, 'delete']);
 });
 
 Route::group(['middleware' => 'teacher'], function () {
@@ -242,6 +243,15 @@ Route::group(['middleware' => 'teacher'], function () {
     Route::post('teacher/submit_marks_register', [ExaminationController::class, 'submit_marks_register']);
     Route::post('teacher/single_submit_marks_register', [ExaminationController::class, 'single_submit_marks_register']);
 
+
+    Route::get('teacher/homework/homework', [HomeworkController::class, 'homeworkTeacher']);
+    Route::get('teacher/homework/homework/add', [HomeworkController::class, 'addTeacher']);
+    Route::post('teacher/ajax_get_subject', [HomeworkController::class, 'ajax_get_subject']);
+    Route::post('teacher/homework/homework/add', [HomeworkController::class, 'insertTeacher']);
+    Route::get('teacher/homework/homework/edit/{id}', [HomeworkController::class, 'editTeacher']);
+    Route::post('teacher/homework/homework/edit/{id}', [HomeworkController::class, 'updateTeacher']);
+    Route::get('teacher/homework/homework/delete/{id}', [HomeworkController::class, 'delete']);
+
 });
 
 Route::group(['middleware' => 'student'], function () {
@@ -266,8 +276,11 @@ Route::group(['middleware' => 'student'], function () {
     Route::get('/student/fees_collection/', [FeesCollectionController::class, 'CollectFeesStudents']);
     Route::post('/student/fees_collection/', [FeesCollectionController::class, 'CollectFeesStudentsPayment']);
 
-
-});
+    Route::get('/student/my_homework', [HomeworkController::class, 'HomeworkStudent']);
+    Route::get('/student/my_homework/submit_homework/{id}', [HomeworkController::class, 'SubmitHomework']);
+    Route::post('/student/my_homework/submit_homework/{id}', [HomeworkController::class, 'SubmitHomeworkInsert']);
+    Route::get('/student/my_submitted_homework', [HomeworkController::class, 'HomeworkSubmitStudent']);
+}); 
 
 Route::group(['middleware' => 'parent'], function () {
     Route::get('/parent/dashboard', [DashboardController::class, 'dashboard']);
