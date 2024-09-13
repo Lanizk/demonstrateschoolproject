@@ -6,9 +6,9 @@
    <link rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
    <!-- Font Awesome -->
-   <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
+   <link rel="stylesheet" href="/../../plugins/fontawesome-free/css/all.min.css">
    <!-- Theme style -->
-   <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
+   <link rel="stylesheet" href="/../../dist/css/adminlte.min.css">
 </head>
 <body class="hold-transition sidebar-mini">
    <div class="wrapper">
@@ -20,11 +20,9 @@
       <div class="container-fluid">
          <div class="row mb-2">
             <div class="col-sm-6">
-               <h1> Homework</h1>
+               <h1>  Submitted Homework</h1>
             </div>
-            <div class="col-sm-6" style=" text-align:right;">
-               <a href="{{url('admin/homework/homework/add')}}" class="btn btn-primary">Add New Assignment</a>
-            </div>
+            
          </div>
       </div>
    </section>
@@ -40,23 +38,35 @@
                   <form method="get" action="">
                      <div class="card-body">
                         <div class="row">
+                           
                            <div class="form-group col-md-3">
-                              <label>Class</label>
-                              <input type="text" class="form-control" value="{{Request::get('class_name')}}"
-                                 name="class_name" placeholder="Class Name">
+                              <label>StudentFirstName</label>
+                              <input type="text" class="form-control" value="{{Request::get('first_name')}}"
+                                 name="first_name" placeholder="Student First Name">
+                           </div>
+                           
+                           <div class="form-group col-md-3">
+                              <label>StudentLastName</label>
+                              <input type="text" class="form-control" value="{{Request::get('last_name')}}"
+                                 name="last_name" placeholder="Student Last Name">
                            </div>
                            <div class="form-group col-md-3">
-                              <label>Subject</label>
-                              <input type="text" class="form-control" value="{{Request::get('subject_name')}}"
-                                 name="subject_name" placeholder="Subject Name">
+                              <label>From Created Date</label>
+                              <input type="date" class="form-control" value="{{Request::get('from_created_date')}}"
+                                 name="from_created_date">
                            </div>
-
+                         
+                           <div class="form-group col-md-3">
+                              <label>To Created Date</label>
+                              <input type="date" class="form-control" value="{{Request::get('to_created_date')}}"
+                                 name="to_created_date">
+                           </div>
                          
 
                            <div class="form-group col-md-3">
                               <button class="btn btn-primary"
                                  style="margin-top: 31px;">Search</button>
-                              <a href="{{url('admin/homework/homework')}}" class="btn btn-success"
+                              <a href="{{url('admin/homework/homework/submitted/'.$homework_id)}}" class="btn btn-success"
                                  style="margin-top: 31px;">Clear</a>
                            </div>
                         </div>
@@ -86,40 +96,26 @@
    <thead>
    <tr>
    <th>#</th>
-   <th>Class</th>
-   <th>Subject</th>
-   <th>HomeworkDate</th>
-   <th>SubmissionDate</th>
+   <th>StudentName</th>
+   <th>Description</th>
    <th>Document</th>
    <th>CreatedAt</th>
-   <th>Created By</th>
-  
-   <th>Action</th>
+   
    </tr>
    </thead>
    <tbody>
    @forelse($getRecord as $value)
    <tr>
    <td>{{$value->id}}</td>
-   <td>{{$value->class_name}}</td>
-   <td>{{$value->subject_name}}</td>
-   <td>{{date('d-m-Y', strtotime($value->homework_date))}}</td>
-   <td>{{date('d-m-Y', strtotime($value->submission_date))}}</td>
+   <td>{{$value->first_name}} {{$value->last_name}}</td>
+   <td>{{$value->description}}</td>
    <td>
    @if(!empty($value->getDocument()))
    <a href="{{$value->getDocument() }}" class="btn btn-primary" download="">Download</a>
    @endif
    </td>
    <td>{{date('d-m-Y', strtotime($value->created_at))}}</td>
-   <td>{{$value->created_by_name}}</td>
-   <td>
-   <a href="{{url('admin/homework/homework/edit/' . $value->id)}}"
-      class="btn btn-primary">Edit</a>
-   <a href="{{url('admin/homework/homework/delete/' . $value->id)}}"
-      class="btn btn-danger">Delete</a>
-      <a href="{{url('admin/homework/homework/submitted/' . $value->id)}}"
-      class="btn btn-success">Submitted Homework</a>
-   </td>
+   
    </tr>
    @empty
    <tr>
@@ -151,10 +147,10 @@
    </div>
    <!-- ./wrapper -->
    <!-- jQuery -->
-   <script src="../../plugins/jquery/jquery.min.js"></script>
+   <script src="/../../plugins/jquery/jquery.min.js"></script>
    <!-- Bootstrap 4 -->
-   <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+   <script src="/../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
    <!-- AdminLTE App -->
-   <script src="../../dist/js/adminlte.min.js"></script>
+   <script src="/../../dist/js/adminlte.min.js"></script>
 </body>
 </html>

@@ -37,8 +37,19 @@ class HomeworkController extends Controller
         return view('admin.Homework.edit', $data);
 
     }
-
-
+    public function submitted($homework_id){
+        $homework=HomeworkModel::getSingle($homework_id);
+        if(!empty($homework))
+        {
+            $data['homework_id']=$homework_id;
+            $data['getRecord']=HomeworkSubmitModel::getRecord($homework_id);
+            $data['header_title'] = "Submitted Homework";
+            return view('admin.Homework.submitted', $data);
+        }
+        else{
+            abort(404);
+        }
+    }
     public function insert(Request $request)
     {
         $homework=new HomeworkModel;
@@ -199,6 +210,22 @@ class HomeworkController extends Controller
 
         return redirect('teacher/homework/homework')->with('success', "Homework Successfully updated");
     }
+
+
+    public function submittedTeacher($homework_id){
+        $homework=HomeworkModel::getSingle($homework_id);
+        if(!empty($homework))
+        {
+            $data['homework_id']=$homework_id;
+            $data['getRecord']=HomeworkSubmitModel::getRecord($homework_id);
+            $data['header_title'] = "Submitted Homework";
+            return view('teacher.homework.submitted', $data);
+        }
+        else{
+            abort(404);
+        }
+    }
+
 public function HomeworkStudent()
 {
     $data['getRecord']=HomeworkModel::getRecordStudent(Auth::user()->class_id,Auth::user()->id);

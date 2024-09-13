@@ -24,8 +24,9 @@ class HomeworkModel extends Model
         ->join('users','users.id','=','homework.created_by')
         ->join('class','class.id','=','homework.class_id')
         ->join('subject','subject.id','=','homework.subject_id')
-        ->where('homework.class_id',$class_ids)
-        ->groupBy('assign_class_teacher.class_id')
+        // ->where('homework.class_id',$class_ids)
+        // ->groupBy('assign_class_teacher.class_id')
+        // ->where('homework.created_by', Auth::user()->id) 
         ->where('homework.is_delete','=',0);
 
         if (!empty(Request::get('class_name'))) {

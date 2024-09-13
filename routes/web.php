@@ -217,6 +217,7 @@ Route::group(['middleware' => 'admin'], function () {
     Route::get('/admin/homework/homework/edit/{id}', [HomeworkController::class, 'edit']);
     Route::post('/admin/homework/homework/edit/{id}', [HomeworkController::class, 'update']);
     Route::get('/admin/homework/homework/delete/{id}', [HomeworkController::class, 'delete']);
+    Route::get('/admin/homework/homework/submitted/{id}', [HomeworkController::class, 'Submitted']);
 });
 
 Route::group(['middleware' => 'teacher'], function () {
@@ -251,6 +252,7 @@ Route::group(['middleware' => 'teacher'], function () {
     Route::get('teacher/homework/homework/edit/{id}', [HomeworkController::class, 'editTeacher']);
     Route::post('teacher/homework/homework/edit/{id}', [HomeworkController::class, 'updateTeacher']);
     Route::get('teacher/homework/homework/delete/{id}', [HomeworkController::class, 'delete']);
+    Route::get('teacher/homework/homework/submitted/{id}', [HomeworkController::class, 'submittedTeacher']);
 
 });
 

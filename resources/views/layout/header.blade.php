@@ -462,56 +462,56 @@
             <li class="nav-item">
                <a href="{{url('student/fees_collection')}}"
                   class="nav-link @if (Request::segment(2) == 'fees_collection') active @endif">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="fas fa-university nav-icon"></i>
                   <p>Pay Fees</p>
                </a>
             </li>
-            <li class="nav-item">
+            <!-- <li class="nav-item">
                <a href="{{url('student/my_calendar')}}" class="nav-link  @if (Request::segment(2) == 'my_calendar') active 
                   @endif">
                   <i class="far fa-user nav-icon"></i>
                   <p>My Calendar</p>
                </a>
-            </li>
+            </li> -->
             <li class="nav-item">
                <a href="{{url('student/my_subject')}}" class="nav-link  @if (Request::segment(2) == 'my_subject') active 
                   @endif">
-                  <i class="far fa-user nav-icon"></i>
-                  <p>My Subject</p>
+                  <i class="fas fa-book nav-icon"></i>
+                  <p>Unit</p>
                </a>
             </li>
             <li class="nav-item">
                <a href="{{url('student/my_timetable')}}" class="nav-link  @if (Request::segment(2) == 'my_subject') active 
                   @endif">
-                  <i class="far fa-user nav-icon"></i>
-                  <p>My Timetable</p>
+                  <i class="far fa-calendar nav-icon"></i>
+                  <p>Timetable</p>
                </a>
             </li>
             <li class="nav-item">
                <a href="{{url('student/my_exam_timetable')}}"
                   class="nav-link @if (Request::segment(2) == 'my_exam_timetable') active @endif">
-                  <i class="far fa-user nav-icon"></i>
-                  <p>My Exam Timetable</p>
+                  <i class="fas fa-clipboard-list nav-icon"></i>
+                  <p>Exam Timetable</p>
                </a>
             </li>
             <li class="nav-item">
                <a href="{{url('student/my_exam_result')}}"
                   class="nav-link @if (Request::segment(2) == 'my_exam_result') active @endif">
-                  <i class="far fa-user nav-icon"></i>
-                  <p>My Exam Result</p>
+                  <i class="fas fa-chart-bar nav-icon"></i>
+                  <p>Exam Result</p>
                </a>
             </li>
             <li class="nav-item">
                <a href="{{url('student/my_homework')}}"
-                  class="nav-link @if (Request::segment(2) == 'my_exam_result') active @endif">
-                  <i class="far fa-user nav-icon"></i>
-                  <p>My Homework</p>
+                  class="nav-link @if (Request::segment(2) == 'my_homework') active @endif">
+                  <i class="fas fa-tasks nav-icon"></i>
+                  <p>Homework</p>
                </a>
             </li>
             <li class="nav-item">
                <a href="{{url('student/my_submitted_homework')}}"
-                  class="nav-link @if (Request::segment(2) == 'my_exam_result') active @endif">
-                  <i class="far fa-user nav-icon"></i>
+                  class="nav-link @if (Request::segment(2) == 'my_submitted_homework') active @endif">
+                  <i class="fas fa-file-alt nav-icon"></i>
                   <p>Submitted Homework</p>
                </a>
             </li>
