@@ -61,6 +61,8 @@
                                                 name="email" required placeholder="Email">
                                             <div style="color:red">{{$errors->first('email')}}</div>
                                         </div>
+
+                                    
                                         <div class="form-group">
                                             <label>Password</label>
                                             <input type="password" class="form-control" name="password" required

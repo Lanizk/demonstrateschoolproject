@@ -61,7 +61,7 @@
                                             <label>Password</label>
                                             <input type="password" class="form-control" name="password" required
                                                 placeholder="Password">
-                                            <p>Due to the plan... Change your password</p>
+                                            <p>Change Your Password</p>
                                         </div>
 
                                     </div>

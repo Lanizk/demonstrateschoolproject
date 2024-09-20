@@ -1,58 +1,3 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bulk SMS Sender</title>
-    <link rel="stylesheet" href="../../dist/css/styleme.css">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-</head>
-<body>
-    <div class="container">
-        <h1>Send Bulk SMS</h1>
-        <form id="smsForm">
-            <label for="recipients">Recipients (comma-separated):</label>
-            <input type="text" id="recipients" name="recipients" required>
-            
-            <label for="message">Message:</label>
-            <textarea id="message" name="message" rows="4" required></textarea>
-            
-            <button type="submit">Send SMS</button>
-            <div id="response"></div>
-        </form>
-    </div>
-
-    <script>
-        document.getElementById('smsForm').addEventListener('submit', function(event) {
-    event.preventDefault();
-
-    const recipients = document.getElementById('recipients').value;
-    const message = document.getElementById('message').value;
-    
-    fetch('/send-sms', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-        },
-        body: JSON.stringify({ recipients, message })
-    })
-    .then(response => response.json())
-    .then(data => {
-        document.getElementById('response').innerText = 'SMS sent successfully!';
-        console.log(data);
-    })
-    .catch(error => {
-        document.getElementById('response').innerText = 'Failed to send SMS.';
-        console.error('Error:', error);
-    });
-});
-
-    </script>
-</body>
-</html>
- -->
-
 
  <!DOCTYPE html>
 <html lang="en">
@@ -62,9 +7,9 @@
       <title>{{ !empty($header_title) ? $header_title : '' }} - School Management System</title>
       <!-- Google Font: Source Sans Pro -->
       <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-      <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
+      <link rel="stylesheet" href="/../../plugins/fontawesome-free/css/all.min.css">
     <!-- Theme style -->
-    <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
+    <link rel="stylesheet" href="/../../dist/css/adminlte.min.css">
       
       <!-- Summernote -->
       <link rel="stylesheet" href="{{ url('plugins/summernote/summernote-bs4.min.css') }}">
@@ -144,11 +89,11 @@
          <!-- /.control-sidebar -->
       </div>
       <!-- ./wrapper -->
-      <script src="../../plugins/jquery/jquery.min.js"></script>
+      <script src="/../../plugins/jquery/jquery.min.js"></script>
     <!-- Bootstrap 4 -->
-    <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- AdminLTE App -->
-    <script src="../../dist/js/adminlte.min.js"></script>
+    <script src="/../../dist/js/adminlte.min.js"></script>
 
       
       <!-- Select2 -->

@@ -28,7 +28,7 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>Assign Subject List</h1>
+                            <h1>Assign Unit List</h1>
                         </div>
 
                         <div class="col-sm-6" style=" text-align:right;">
@@ -52,7 +52,7 @@
                         <div class="col-md-12">
                             <div class="card card-primary">
                                 <div class="card-header">
-                                    <h3 class="card-title">Search Assign Subject
+                                    <h3 class="card-title">Search Assign Unit
                                 </div>
                                 <form method="get" action="">
 
@@ -65,7 +65,7 @@
                                             </div>
 
                                             <div class="form-group col-md-3">
-                                                <label>Subject Name</label>
+                                                <label>Unit Name</label>
                                                 <input type="text" class="form-control" value="{{Request::get('subject_name')}}"
                                                     name="subject_name" placeholder="Subject Name">
                                             </div>
@@ -96,7 +96,7 @@
 
                             <div class="card">
                                 <div class="card-header">
-                                    <h3 class="card-title">Assign Subject List</h3>
+                                    <h3 class="card-title">Assign Unit List</h3>
 
 
                                 </div>
@@ -105,9 +105,9 @@
                                     <table class="table">
                                         <thead>
                                             <tr>
-                                                <th>#</th>
+                                                
                                                 <th>Class Name</th>
-                                                <th>Subject Name</th>
+                                                <th>Unit Name</th>
                                                 <th>Status</th>
                                                 <th>Created by</th>
                                                 <th>Created Date</th>
@@ -117,7 +117,7 @@
                                         <tbody>
                                         @foreach ($getRecord as $value )
                                            <tr>
-                                            <td> {{$value->id}}</td>
+                                            
                                             <td> {{$value->class_name}}</td>
                                             <td> {{$value->subject_name}}</td>
                                             <td> 

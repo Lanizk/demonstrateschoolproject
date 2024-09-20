@@ -26,12 +26,12 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>Add New Subject</h1>
+                            <h1>Add New Unit</h1>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item active">Add New Subject</li>
+                                <li class="breadcrumb-item active">Add New Unit</li>
                             </ol>
                         </div>
                     </div>
@@ -51,13 +51,13 @@
                                     {{ csrf_field()}}
                                     <div class="card-body">
                                         <div class="form-group">
-                                            <label>Subject Name</label>
+                                            <label>Unit Name</label>
                                             <input type="text" class="form-control" value="{{old('name')}}" name="name"
-                                                required placeholder="Subject Name">
+                                                required placeholder="Unit Name">
                                         </div>
 
                                         <div class="form-group">
-                                            <label>Subject Type</label>
+                                            <label>Unit Type</label>
                                             <select class="form-control" name="type" required>
                                                 <option value="">Select Type</option>
                                                 <option value="Theory">Theory</option>

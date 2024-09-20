@@ -121,9 +121,10 @@ class ClassSubjectController extends Controller
     public function update_single($id, Request $request)
     {
 
+        
 
         $gettAlreadyFirst = classSubjectModel::getAlreadyFirst($request->class_id, $request->subject_id);
-
+        
         if (!empty($gettAlreadyFirst)) {
             $gettAlreadyFirst->status = $request->status;
             $gettAlreadyFirst->save();
@@ -140,6 +141,29 @@ class ClassSubjectController extends Controller
 
 
     }
+    // public function update(Request $request)
+    // {
+    //     classSubjectModel::deleteSubject($request->class_id);
+
+    //     if (!empty($request->subject_id)) {
+    //         foreach ($request->subject_id as $subject_id) {
+    //             $gettAlreadyFirst = classSubjectModel::getAlreadyFirst($request->class_id, $subject_id);
+
+    //             if (!empty($gettAlreadyFirst)) {
+    //                 $save->status = $request->status;
+    //                 $save->save();
+    //             } else {
+    //                 $save = new classSubjectModel;
+    //                 $save->class_id = $request->class_id;
+    //                 $save->subject_id = $subject_id;
+    //                 $save->status = $request->status;
+    //                 $save->created_by = Auth::user()->id;
+    //                 $save->save();
+    //             }
+    //         }
+    //         return redirect('admin/assign_subject/list')->with('success', "Subject Successfully Assigned to class");
+    //     }
+    // }
 }
 
 

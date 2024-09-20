@@ -59,7 +59,7 @@ class StudentController extends Controller
             $file = $request->file('profile_pic');
             $randomStr = date('Ymdhis') . Str::random(30);
             $filename = strtolower($randomStr) . '.' . $ext;
-            $file->move('/upload/profile/', $filename);
+            $file->move('upload/profile/', $filename);
 
             $student->profile_pic = $filename;
         }
@@ -136,7 +136,7 @@ class StudentController extends Controller
             $file = $request->file('profile_pic');
             $randomStr = date('Ymdhis') . Str::random(30);
             $filename = strtolower($randomStr) . '.' . $ext;
-            $file->move('/upload/profile/', $filename);
+            $file->move('upload/profile/', $filename);
 
             $student->profile_pic = $filename;
         }

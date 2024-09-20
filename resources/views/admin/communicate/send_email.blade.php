@@ -8,11 +8,11 @@
       <link rel="stylesheet"
          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
       <!-- Font Awesome -->
-      <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
+      <link rel="stylesheet" href="/../../plugins/fontawesome-free/css/all.min.css">
       <!-- Theme style -->
-      <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
+      <link rel="stylesheet" href="/../../dist/css/adminlte.min.css">
       <!-- Summernote -->
-      <link rel="stylesheet" href="../../plugins/summernote/summernote-bs4.min.css">
+      <link rel="stylesheet" href="/../../plugins/summernote/summernote-bs4.min.css">
       <link rel="stylesheet" href="{{ url('../../plugins/select2/css/select2.min.css')}}">
    </head>
    <body class="hold-transition sidebar-mini">
@@ -89,10 +89,10 @@
       </div>
       <!-- ./wrapper -->
       <!-- jQuery -->
-      <script src="../../plugins/jquery/jquery.min.js"></script>
+      <script src="/../../plugins/jquery/jquery.min.js"></script>
       <!-- Bootstrap 4 -->
-      <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-      <script src="{{ url('../../plugins/select2/js/select2.full.min.js')}}"></script>
+      <script src="/../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+      <script src="{{ url('/../../plugins/select2/js/select2.full.min.js')}}"></script>
       <!-- Summernote -->
       <!-- <script src="../../plugins/summernote/summernote-bs4.min.js"></script> -->
       <script src="{{url('../../plugins/summernote/summernote-bs4.min.js')}}"></script>

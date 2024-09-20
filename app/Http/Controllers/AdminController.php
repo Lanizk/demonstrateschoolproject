@@ -29,7 +29,7 @@ class AdminController extends Controller
         request()->validate(['email' => 'required|email|unique:users']);
         $user = new User;
         $user->name = trim($request->name);
-        $user->email = trim($request->name);
+        $user->email = trim($request->email);
         $user->password = Hash::make($request->name);
         $user->user_type = 1;
         $user->save();

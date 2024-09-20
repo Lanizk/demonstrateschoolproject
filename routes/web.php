@@ -74,7 +74,7 @@ Route::get('/admin/admin/list', function () {
 
 Route::group(['middleware' => 'admin'], function () {
 
-    Route::get('/show-sms', [SMSController::class, 'showSms']);
+    Route::get('admin/communicate/show-sms', [SMSController::class, 'showSms']);
     Route::post('/send-sms', [SMSController::class, 'sendSms']);
 
 
@@ -193,6 +193,7 @@ Route::group(['middleware' => 'admin'], function () {
 
     Route::get('admin/attendance/student', [AttendanceController::class, 'AttendanceStudent']);
     Route::post('admin/attendance/student/save', [AttendanceController::class, 'AttendanceStudentSubmit']);
+    Route::get('admin/attendance/report', [AttendanceController::class, 'AttendanceReport']);
 
     Route::get('/admin/examinations/marks_grade_list', [ExaminationController::class, 'marks_grade']);
     Route::get('/admin/examinations/mark_grades/add', [ExaminationController::class, 'marks_grade_add']);
@@ -254,6 +255,7 @@ Route::group(['middleware' => 'teacher'], function () {
     Route::get('teacher/homework/homework/delete/{id}', [HomeworkController::class, 'delete']);
     Route::get('teacher/homework/homework/submitted/{id}', [HomeworkController::class, 'submittedTeacher']);
 
+    Route::get('teacher/attendance/student', [AttendanceController::class, 'AttendanceStudentTeacher']);
 });
 
 Route::group(['middleware' => 'student'], function () {

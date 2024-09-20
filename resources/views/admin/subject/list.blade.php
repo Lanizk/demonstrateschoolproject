@@ -28,11 +28,11 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>Subject List</h1>
+                            <h1>Unit List</h1>
                         </div>
 
                         <div class="col-sm-6" style=" text-align:right;">
-                            <a href="{{url('admin/subject/add')}}" class="btn btn-primary">Add New Subject</a>
+                            <a href="{{url('admin/subject/add')}}" class="btn btn-primary">Add New Unit</a>
                         </div>
 
 
@@ -52,7 +52,7 @@
                         <div class="col-md-12">
                             <div class="card card-primary">
                                 <div class="card-header">
-                                    <h3 class="card-title">Search Subject
+                                    <h3 class="card-title">Search Unit
                                 </div>
                                 <form method="get" action="">
 
@@ -65,7 +65,7 @@
                                             </div>
 
                                             <div class="form-group col-md-3">
-                                                <label>Subject Type</label>
+                                                <label>Unit Type</label>
                                                 <select class="form-control" name="type">
                                                     <option value="">Select Type</option>
                                                     <option {{(Request::get('type') == 'Theory') ? 'selected' : ''}}
@@ -103,7 +103,7 @@
 
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Subject List</h3>
+                                <h3 class="card-title">Unit List</h3>
 
 
                             </div>
@@ -112,9 +112,9 @@
                                 <table class="table">
                                     <thead>
                                         <tr>
-                                            <th>#</th>
-                                            <th>Subject Name</th>
-                                            <th>Subject Type</th>
+                                            
+                                            <th>Unit Name</th>
+                                            <th>Unit Type</th>
                                             <th>Status</th>
                                             <th>Created By</th>
                                             <th>Created Date</th>
@@ -124,7 +124,7 @@
                                     <tbody>
                                         @foreach ($getRecord as $value)
                                             <tr>
-                                                <td> {{$value->id}}</td>
+                                                
                                                 <td> {{$value->name}}</td>
                                                 <td> {{$value->type}}</td>
                                                 <td>

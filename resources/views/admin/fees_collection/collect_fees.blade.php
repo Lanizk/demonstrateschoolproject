@@ -51,7 +51,7 @@
                                 </div>
                                 <form method="get" action="">
 
-                                    <div class="card-body">$student->name
+                                    <div class="card-body">
                                         <div class="row">
                                             <div class="form-group col-md-2">
                                                 <label>Class</label>
