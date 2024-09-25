@@ -106,15 +106,23 @@
                                     <td>{{ $value->weight}}</td>
                                     <td>{{ ($value->status == 0) ? 'Active' : 'Inactive'}}</td>
                                     <td>{{ date('d-m-Y', strtotime($value->created_at))}}</td>
-                                    <td style="width:700px;">
-                                        <a class="btn btn-success btn-sm"
+                                    <td style="min-width:700px;">
+                                        <a style="margin-bottom:10px" class="btn btn-success btn-sm"
                                             href="{{url('parent/studentmy/soma/' . $value->id)}}">Subject</a>
 
-                                        <a class="btn btn-primary btn-sm"
+                                        <a style="margin-bottom:10px" class="btn btn-primary btn-sm"
                                             href="{{url('parent/studentmy/exam_timetable/' . $value->id)}}">ExamTimetable</a>
 
-                                        <a class="btn btn-primary btn-sm"
+                                        <a style="margin-bottom:10px" class="btn btn-warning btn-sm"
                                             href="{{url('parent/studentmy/exam_result/' . $value->id)}}">ExamResult</a>
+
+                                        <a style="margin-bottom:10px" class="btn btn-danger btn-sm"
+                                            href="{{url('parent/attendance/' . $value->id)}}">Attendance</a>
+
+                                        <a style="margin-bottom:10px" class="btn btn-secondary btn-sm"
+                                            href="{{url('parent/my_student/homework/' . $value->id)}}">Homework</a>
+                                        <a  style="margin-bottom:10px" class="btn btn-warning btn-sm"
+                                            href="{{url('parent/my_student/submitted_homework/' . $value->id)}}">SubmittedHomework</a>
                                     </td>
 
 

@@ -214,11 +214,15 @@ Route::group(['middleware' => 'admin'], function () {
     Route::get('/admin/homework/homework', [HomeworkController::class, 'Homework']);
     Route::get('/admin/homework/homework/add', [HomeworkController::class, 'add']);
     Route::post('admin/ajax_get_subject', [HomeworkController::class, 'ajax_get_subject']);
+
+
     Route::post('/admin/homework/homework/add', [HomeworkController::class, 'insert']);
     Route::get('/admin/homework/homework/edit/{id}', [HomeworkController::class, 'edit']);
     Route::post('/admin/homework/homework/edit/{id}', [HomeworkController::class, 'update']);
     Route::get('/admin/homework/homework/delete/{id}', [HomeworkController::class, 'delete']);
     Route::get('/admin/homework/homework/submitted/{id}', [HomeworkController::class, 'Submitted']);
+    Route::get('admin/homework/homework_report', [HomeworkController::class, 'homework_report']);
+   
 });
 
 Route::group(['middleware' => 'teacher'], function () {
@@ -256,6 +260,11 @@ Route::group(['middleware' => 'teacher'], function () {
     Route::get('teacher/homework/homework/submitted/{id}', [HomeworkController::class, 'submittedTeacher']);
 
     Route::get('teacher/attendance/student', [AttendanceController::class, 'AttendanceStudentTeacher']);
+    Route::post('teacher/attendance/student/save', [AttendanceController::class, 'AttendanceStudentSubmit']);
+    Route::post('teacher/attendance/student/', [AttendanceController::class, 'AttendanceStudentTeacher']);
+    Route::get('teacher/attendance/report', [AttendanceController::class, 'AttendanceReportTeacher']);
+    
+
 });
 
 Route::group(['middleware' => 'student'], function () {
@@ -279,6 +288,9 @@ Route::group(['middleware' => 'student'], function () {
 
     Route::get('/student/fees_collection/', [FeesCollectionController::class, 'CollectFeesStudents']);
     Route::post('/student/fees_collection/', [FeesCollectionController::class, 'CollectFeesStudentsPayment']);
+
+    Route::get('/student/my_attendance', [AttendanceController::class, 'MyAttendanceStudents']);
+
 
     Route::get('/student/my_homework', [HomeworkController::class, 'HomeworkStudent']);
     Route::get('/student/my_homework/submit_homework/{id}', [HomeworkController::class, 'SubmitHomework']);
@@ -306,10 +318,12 @@ Route::group(['middleware' => 'parent'], function () {
 
     Route::get('parent/studentmy/soma/{student_id}', [SubjectController::class, 'ParentStudentSubject']);
     Route::get('/parent/studentmy/exam_timetable/{student_id}', [ExaminationController::class, 'ParentMyExamTimetable']);
-
-
+     
+    
+    Route::get('/parent/attendance/{student_id}', [AttendanceController::class, 'MyAttendanceParent']);
     Route::get('/parent/studentmy/exam_result/{student_id}', [ExaminationController::class, 'ParentMyExamResult']);
-
+    Route::get('parent/my_student/homework/{id}', [HomeworkController::class, 'HomeworkStudentParent']);
+    Route::get('parent/my_student/submitted_homework/{id}', [HomeworkController::class, 'SubmittedHomeworkStudentParent']);
 });
 
 

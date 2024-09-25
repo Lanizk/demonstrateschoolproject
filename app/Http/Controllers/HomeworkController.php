@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\ClassModel;
 use App\Models\classSubjectModel;
 use App\Models\HomeworkModel;
+use App\Models\User;
 use App\Models\AssignClassTeacherModel;
 use Auth;
 use Str;
@@ -13,6 +14,14 @@ use App\Models\HomeworkSubmitModel;
 
 class HomeworkController extends Controller
 {
+
+    public function homework_report()
+    {
+        $data['getRecord']=HomeworkSubmitModel::getHomeworkReport();
+        $data['header_title'] = "Homework Report";
+        return view('admin.Homework.report', $data);
+    }
+
     public function homework()
     {
         $data['getRecord']=HomeworkModel::getRecord();
@@ -266,6 +275,27 @@ public function HomeworkSubmitStudent(Request $request)
         $data['getRecord']=HomeworkSubmitModel::getRecordStudent(Auth::user()->id);
         $data['header_title'] = "Homework";
         return view('student.homework.submitedlist', $data);
+    }
+
+    //Parent side work
+   
+    public function HomeworkStudentParent($student_id)
+{
+    $getStudent=User::getSingle($student_id);
+
+    $data['getRecord']=HomeworkModel::getRecordStudent($getStudent->class_id,$getStudent->id);
+    $data['header_title']='Student Homework';
+    $data['getStudent']=$getStudent;
+    return view('parent.homework.list', $data);
+}
+
+public function SubmittedHomeworkStudentParent($student_id)
+    {   
+        $getStudent=User::getSingle($student_id);
+        $data['getRecord']=HomeworkSubmitModel::getRecordStudent($getStudent->id);
+        $data['header_title'] = "Student Submitted Homework";
+        $data['getStudent']=$getStudent;
+        return view('parent.homework.submited_list', $data);
     }
 
 }

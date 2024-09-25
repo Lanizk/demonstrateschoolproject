@@ -46,7 +46,7 @@ class ParentController extends Controller
             $file = $request->file('profile_pic');
             $randomStr = date('Ymdhis') . Str::random(30);
             $filename = strtolower($randomStr) . '.' . $ext;
-            $file->move('/upload/profile/', $filename);
+            $file->move('upload/profile/', $filename);
 
             $student->profile_pic = $filename;
         }
@@ -165,7 +165,7 @@ class ParentController extends Controller
 
         $data['getRecord'] = User::getMyStudent($id);
         $data['header_title'] = "Parent Student List";
-        return view('parent.my_Student', $data);
+        return view('parent.my_student', $data);
 
     }
 

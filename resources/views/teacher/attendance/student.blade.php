@@ -50,8 +50,8 @@
                                                 <select class="form-control" name="class_id" id="getClass" required required>
                                                     <option value="">Select</option>
                                                     @foreach ($getClass as $class)
-                                                        <option {{(Request::get('class_id') == $class->id) ? 'selected' : ''}}
-                                                        value="{{$class->id}}">{{$class->name}}</option>
+                                                        <option {{(Request::get('class_id') == $class->class_id) ? 'selected' : ''}}
+                                                        value="{{$class->class_id}}">{{$class->class_name}}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
@@ -156,7 +156,7 @@
 
             $.ajax({
                 type: "POST",
-                url: "{{url('admin/attendance/student/save')}}",
+                url: "{{url('teacher/attendance/student/save')}}",
                 data: {
                     "_token": "{{csrf_token()}}",
                     student_id:student_id,

@@ -13,7 +13,9 @@ use App\Models\ClassModel;
 use App\Models\SubjectModel;
 use App\Models\AssignClassTeacherModel;
 use App\Models\classSubjectModel;
-
+use App\Models\StudentAttendanceModel;
+use App\Models\HomeworkSubmitModel;
+use App\Models\HomeworkModel;
 
 class DashboardController extends Controller
 {
@@ -47,7 +49,10 @@ class DashboardController extends Controller
 
             $data['totalPaidAmount']=StudentAddFeesModel::TotalPaidAmountStudent(Auth::user()->id);
             $data['getTotalTodayFees']=StudentAddFeesModel::getTotalTodayfees();
-           
+            $data['TotalAttendance']=StudentAttendanceModel::getRecordStudentCount(Auth::user()->id);
+            $data['TotalHomework']=HomeworkModel::getRecordStudentCount(Auth::user()->class_id,Auth::user()->id);
+            $data['TotalSubmittedHomework']=HomeworkSubmitModel::getRecordStudentCount(Auth::user()->id);
+            
 
             $data['TotalExam']=ExamModel::getTotalExam();
             $data['TotalClass']=ClassModel::getTotalClass();
@@ -55,6 +60,26 @@ class DashboardController extends Controller
             return view('student.dashboard', $data);
 
         } else if (Auth::user()->user_type == 4) {
+
+            $student_ids=User::getMyStudentIds(Auth::user()->id);
+            if(!empty($student_ids))
+            {
+                $data['totalPaidAmount']=StudentAddFeesModel::TotalPaidAmountStudentParent($student_ids);
+                $data['TotalAttendance']=StudentAttendanceModel::getRecordStudentParentCount($student_ids);
+                $data['TotalSubmittedHomework']=HomeworkSubmitModel::getRecordStudentParentCount($student_ids);
+
+            }
+            else{
+                $data['totalPaidAmount']=0;
+                $data['TotalAttendance']=0;
+                $data['TotalSubmitHomework']=0;
+            }
+            
+            $data['getTotalFees']=StudentAddFeesModel::getTotalFees();
+            $data['getTotalTodayFees']=StudentAddFeesModel::getTotalTodayfees();
+            $data['TotalStudent']=User::getMyStudentCount(Auth::user()->id);
+           
+
             return view('parent.dashboard', $data);
 
         }

@@ -35,8 +35,9 @@ class FeesCollectionController extends Controller
         return view('admin.fees_collection.add_collect_fees', $data);
     }
 
-    public function collect_fees_report(){
-        
+    public function collect_fees_report(Request $request){
+
+            $data['getClass'] = ClassModel::getClass();
             $data['getRecord']=StudentAddFeesModel::getRecord();
             $data['header_title'] = "Fees Report";
             return view('admin.fees_collection.collect_fee_report', $data);

@@ -52,7 +52,7 @@
                                 <div class="icon">
                                     <i class="ion ion-bag"></i>
                                 </div>
-                                <a href="{{url('admin/fees_collection/collect_fees')}}" class="small-box-footer">More info <i
+                                <a href="{{url('admin/fees/collect_fees_report?created_at='.date('Y-m-d'))}}" class="small-box-footer">More info <i
                                         class="fas fa-arrow-circle-right"></i></a>
                             </div>
                         </div>

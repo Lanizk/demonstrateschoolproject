@@ -35,6 +35,54 @@
             <section class="content">
                 <div class="container-fluid">
                     <div class="row">
+                         
+                    <form method="get" action="">
+                           <div class="card-body">
+                              <div class="row">
+                                 <div class="form-group col-md-2">
+                                    <label>Student Name</label>
+                                    <input type="text" class="form-control" placeholder="Student ID" value="{{Request::get('student_name')}}" name="student_name">
+                                 </div>
+                                 <div class="form-group col-md-2">
+                                    <label>Student Last Name</label>
+                                    <input type="text" class="form-control" placeholder="Student Last Name" value="{{Request::get('student_last_name')}}" name="student_last_name">
+                                 </div>
+                                 <div class="form-group col-md-2">
+                                    <label>Class</label>
+                                    <select class="form-control" name="class_id" >
+                                       <option value="">Select</option>
+                                       @foreach ($getClass as $class)
+                                       <option {{(Request::get('class_id') == $class->id) ? 'selected' : ''}}
+                                       value="{{$class->id}}">{{$class->name}}</option>
+                                       @endforeach
+                                    </select>
+                                 </div>
+                                 <div class="form-group col-md-2">
+                                    <label>Created Date</label>
+                                    <input type="date" class="form-control" value="{{Request::get('created_at')}}" name="created_at">
+                                 </div>
+                                 <div class="form-group col-md-2">
+                                    <label>Payment Type</label>
+                                    <select class="form-control" name="payment_type">
+                                       <option value="">Select</option>
+                                       <option {{(Request::get('payment_type') == 1) ? 'selected' : ''}} value="Cash">Cash</option>
+                                       <option {{(Request::get('payment_type') == 1) ? 'selected' : ''}} value="Cheque">Cheque</option>
+                                       <option {{(Request::get('payment_type') == 1) ? 'selected' : ''}} value="Mpesa">Mpesa</option>
+                                    </select>
+                                 </div>
+                                 <div class="form-group col-md-2">
+                                    <button class="btn btn-primary"
+                                       style="margin-top: 31px;">Search</button>
+                                    <a href="{{url('/admin/fees/collect_fees_report')}}"
+')}}"
+                                       class="btn btn-success" style="margin-top: 31px;">Clear</a>
+                                    
+                                 </div>
+                              </div>
+                           </div>
+                           <!-- /.card-body -->
+                        </form>
+
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-header">
@@ -46,7 +94,7 @@
                                             <tr>
                                                 <th>#</th>
                                                  <th>Student Name</th>
-                                                <th>Mobile No</th>
+                                                
                                                 <th>ClassName</th>
                                                 <th>TotalAmount</th>
                                                 <th>PaidAmount</th>
@@ -55,16 +103,35 @@
                                                 <th>Remark</th>
                                                 <th>CreatedBy</th>
                                                 <th>CreatedDate</th>
-                                                <th>Action</th>
+                                                
                                             </tr>
                                         </thead>
                                         <tbody>
-                                          
-                                        
+                                          @forelse($getRecord as $value)
+                                          <tr>
+                                          <td>{{$value->id}}</td>
+                                          <td>{{$value->student_name_first}} {{$value->student_name_last}}</td>
+                                         
+                                                    <td>{{$value->class_name}}</td>
+                                                    <td>Sh {{number_format($value->total_amount, 2)}}</td>
+                                                    <td>Sh {{number_format($value->paid_amount, 2)}}</td>
+                                                    <td>Sh {{number_format($value->remaining_amount, 2)}}</td>
+                                                    <td>{{$value->payment_type}}</td>
+                                                    <td>{{$value->remark}}</td>
+                                                    <td>{{$value->created_name}}</td>
+                                                    <td>{{date('d-m-Y', strtotime($value->created_at))}}</td>
+                                          </tr>
+                                          @empty
+                                                <tr>
+                                                    <td colspan="100%">Record Not Found</td>
+                                                </tr>
+                                            @endforelse
                                         </tbody>
                                     </table>
                                     <div style="padding:10px; float: right;">
-                                    </div>
+                                    
+                                    {!!$getRecord->appends(Illuminate\Support\Facades\Request::except('page'))->links()!!} </div>
+                                   
                                 </div>
                             </div>
                         </div>
