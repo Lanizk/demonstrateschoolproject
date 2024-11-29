@@ -49,9 +49,9 @@ class DashboardController extends Controller
 
             $data['totalPaidAmount']=StudentAddFeesModel::TotalPaidAmountStudent(Auth::user()->id);
             $data['getTotalTodayFees']=StudentAddFeesModel::getTotalTodayfees();
-            $data['TotalAttendance']=StudentAttendanceModel::getRecordStudentCount(Auth::user()->id);
-            $data['TotalHomework']=HomeworkModel::getRecordStudentCount(Auth::user()->class_id,Auth::user()->id);
-            $data['TotalSubmittedHomework']=HomeworkSubmitModel::getRecordStudentCount(Auth::user()->id);
+            // $data['TotalAttendance']=StudentAttendanceModel::getRecordStudentCount(Auth::user()->id);
+            // $data['TotalHomework']=HomeworkModel::getRecordStudentCount(Auth::user()->class_id,Auth::user()->id);
+            // $data['TotalSubmittedHomework']=HomeworkSubmitModel::getRecordStudentCount(Auth::user()->id);
             
 
             $data['TotalExam']=ExamModel::getTotalExam();
