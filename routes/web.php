@@ -22,7 +22,7 @@ use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\HomeworkController;
 use Illuminate\Support\Facades\Route;
 
-
+use App\Http\Controllers\RegisterController;
 
 Route::get('/test-mail', function () {
     $user=new stdClass();
@@ -52,7 +52,9 @@ Route::get('/simulate','Simulate')->name('simulate');
 
 
 
+Route::get('/register', [RegisterController::class, 'create']);
 
+Route::post('/register', [RegisterController::class, 'register'])->name('register.store');
 
 
 Route::get('/', [AuthController::class, 'login']);

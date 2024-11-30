@@ -66,6 +66,9 @@
                 <p class="mb-1">
                     <a href="{{url('forgot-password')}}">I forgot my password</a>
                 </p>
+                <p class="mb-0">
+        <a href="/register" class="text-center">Register a new membership</a>
+      </p>
 
             </div>
             <!-- /.card-body -->
