@@ -22,7 +22,7 @@ class RegisterController extends Controller
         // 'password' => 'required|string|min:8|confirmed',
         // 'phone_number' => 'required|string|max:15',
         // 'school_name' => 'required|string|max:255',]);
-
+        $subdomain=strtolower( str_replace('',' ',$request->school_name)).'.localhost';
         $user = new User();
         $user->name = trim($request->name);
         $user->email = trim($request->email);
