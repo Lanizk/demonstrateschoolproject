@@ -73,6 +73,8 @@ Route::get('/admin/admin/list', function () {
 });
 
 
+Route::domain('{subdomain}.localhost')->group(function () {
+    Route::middleware(['tenant'])->group(function () {
 
 Route::group(['middleware' => 'admin'], function () {
 
@@ -328,4 +330,4 @@ Route::group(['middleware' => 'parent'], function () {
     Route::get('parent/my_student/submitted_homework/{id}', [HomeworkController::class, 'SubmittedHomeworkStudentParent']);
 });
 
-
+    });});

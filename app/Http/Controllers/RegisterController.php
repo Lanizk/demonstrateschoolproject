@@ -22,7 +22,7 @@ class RegisterController extends Controller
         // 'password' => 'required|string|min:8|confirmed',
         // 'phone_number' => 'required|string|max:15',
         // 'school_name' => 'required|string|max:255',]);
-        $subdomain=strtolower( str_replace('',' ',$request->school_name)).'.localhost';
+        $subdomain=strtolower( str_replace(' ','',$request->school_name)).'.localhost';
         $user = new User();
         $user->name = trim($request->name);
         $user->email = trim($request->email);
@@ -36,7 +36,8 @@ class RegisterController extends Controller
         $school->school_name = trim($request->school_name);
         $school->registered_by = trim($request->name);
         $school->mobile_number =trim($request->mobile_number);
+        $school->subdomain =$subdomain;
         $school->save();
-        return redirect('admin/admin/list')->with('success', "School successfully created");
+        return view ('auth.login');
     }
 }
